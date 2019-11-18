@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 project (ERIZO)
+##打开了verbose
+set(CMAKE_VERBOSE_MAKEFILE 1)
 
 set(ERIZO_VERSION_MAJOR 0)
 set(ERIZO_VERSION_MINOR 1)
@@ -22,6 +24,9 @@ file(GLOB_RECURSE ERIZO_SOURCES "${ERIZO_SOURCE_DIR}/*.h" "${ERIZO_SOURCE_DIR}/*
 
 add_library(erizo SHARED ${ERIZO_SOURCES})
 
-#message("Libs ${SRTP} ${NICE} ${GTHREAD} ${SSL} ${CRYPTO} ${LIBS} ${LOG}")
+message("Libs ${SRTP} ${NICE} ${GTHREAD} ${SSL} ${CRYPTO} ${LIBS} ${LOG}")
 
-target_link_libraries(erizo ${GLIB_LIBRARIES} ${boost_LIBRARIES} ${SRTP} ${NICE} ${GTHREAD} ${SSL} ${CRYPTO} ${LIBS} ${LOG} webrtc nicer nrappkit)
+##这个没数据，Boost_LIBRARIES有。
+message("=====boost_LIBRARIES   ${boost_LIBRARIES}")
+
+target_link_libraries(erizo ${GLIB_LIBRARIES} ${Boost_LIBRARIES} ${SRTP} ${NICE} ${GTHREAD} ${SSL} ${CRYPTO} ${LIBS} ${LOG} webrtc nicer nrappkit)

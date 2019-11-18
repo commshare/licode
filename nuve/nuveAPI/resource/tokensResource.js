@@ -113,6 +113,8 @@ const generateToken = (req, callback) => {
   } else {
     cloudHandler.getErizoControllerForRoom(currentRoom, (ec) => {
       if (ec === 'timeout' || !ec) {
+        log.error('err: getErizoControllerForRoom timeout');
+
         callback('error');
         return;
       }
@@ -128,6 +130,7 @@ const generateToken = (req, callback) => {
 
       tokenRegistry.addToken(token, (id, err) => {
         if (err) {
+          log.error('err: tokenRegistry.addToken ');
           return callback('error');
         }
         const tokenAdded = getTokenString(id, token);

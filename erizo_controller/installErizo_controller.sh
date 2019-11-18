@@ -25,7 +25,9 @@ npm install --loglevel error amqp socket.io@2.0.3 log4js@1.0.1 node-getopt uuid@
 
 echo [erizo_controller] Done, node_modules installed
 
+echo "======cd to erizoClient folder "
 cd ./erizoClient/
+echo "======gulp erzio "
 
 $LICODE_ROOT/node_modules/.bin/gulp erizo
 

@@ -10,8 +10,8 @@
     }
   ],
   "levels": {
-  	"NativeStack": "ERROR",
-  	"NativeClient": "ERROR",
-  	"ErizoSimpleNativeConnection": "INFO"
+  	"NativeStack": "TRACE",
+  	"NativeClient": "TRACE",
+  	"ErizoSimpleNativeConnection": "TRACE"
   }
 }

@@ -1,4 +1,4 @@
-#ifndef ERIZOAPI_SYNTHETICINPUT_H_
+  #ifndef ERIZOAPI_SYNTHETICINPUT_H_
 #define ERIZOAPI_SYNTHETICINPUT_H_
 
 #include <nan.h>

@@ -31,7 +31,7 @@ global.config.erizoController.turnServer = global.config.erizoController.turnSer
 global.config.erizoController.warning_n_rooms = global.config.erizoController.warning_n_rooms || 15;
 global.config.erizoController.limit_n_rooms = global.config.erizoController.limit_n_rooms || 20;
 global.config.erizoController.interval_time_keepAlive =
-  global.config.erizoController.interval_time_keepAlive || 1000;
+  global.config.erizoController.interval_time_keepAlive || 3000;
 global.config.erizoController.report.session_events =
   global.config.erizoController.report.session_events || false;
 global.config.erizoController.recording_path =
@@ -188,6 +188,8 @@ const addToCloudHandler = (callback) => {
   }
 
   const startKeepAlives = (erizoControllerId, erizoPublicIP) => {
+    console.log('startKeepAlives');
+
     const intervalId = setInterval(() => {
       nuve.keepAlive(erizoControllerId)
         .then(() => true)
@@ -238,9 +240,11 @@ const addToCloudHandler = (callback) => {
       startKeepAlives(myId, publicIP);
       callback('callback');
     }).catch((reason) => {
+      console.log('======catch exception========',reason);
       if (reason === 'timeout') {
         log.warn('message: addECToCloudHandler cloudHandler does not respond, ' +
                      `attemptsLeft: ${attempt}`);
+        console.log('======We try it more!======');
 
             // We'll try it more!
         setTimeout(() => {
@@ -270,7 +274,7 @@ const updateMyState = () => {
 
   nRooms = rooms.size();
 
-  log.debug('message: Updating my state, id:', myId, ', rooms:', nRooms);
+  log.info('message: Updating my state, id:', myId, ', rooms:', nRooms);
 
   if (nRooms < WARNING_N_ROOMS) {
     newState = 2;

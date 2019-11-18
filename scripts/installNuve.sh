@@ -65,6 +65,9 @@ populate_mongo(){
   sed $replacement $BUILD_DIR/licode_1.js > $ROOT/licode_config.js
   rm $BUILD_DIR/licode_1.js
 }
-
+#4.2.1 好像不需要
+#/usr/local/Cellar/mongodb-community@4.0/4.0.13/bin
+export PATH="$PATH:/usr/local/Cellar/mongodb-community@4.0/4.0.13/bin"
+echo $PATH
 install_nuve
 populate_mongo

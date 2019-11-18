@@ -7,6 +7,9 @@ const logger = require('./../logger').logger;
 
 // Logger
 const log = logger.getLogger('RoomRegistry');
+//mongodb debugging - ReferenceError: console is not defined
+//var console = {};
+//console.log = print;
 
 exports.getRooms = (callback) => {
   db.rooms.find({}).toArray((err, rooms) => {
@@ -51,6 +54,98 @@ exports.addRoom = (room, callback) => {
     callback(saved);
   });
 };
+//
+// /* eslint-disable */
+// exports.assignErizoControllerToRoom = function(room, erizoControllerId, callback) {
+//   log.warn(`assignErizoControllerToRoom:  erizoControllerId`,erizoControllerId);
+//   return db.eval(function(id, erizoControllerId) {
+//     log.warn(`[ROOMRG]db eval --begin--`);
+//     var erizoController;
+//     var room = db.rooms.findOne({_id: new ObjectId(id)});
+//     if (!room) {
+//       log.error(`[ROOMRG]db rooms findone fail ,no room `);
+//       return erizoController;
+//     }
+//
+//     if (room.erizoControllerId) {
+//       erizoController = db.erizoControllers.findOne({_id: room.erizoControllerId});
+//       if (erizoController) {
+//         log.error(`[ROOMRG]db rooms findone fail ,no room `);
+//         return erizoController;
+//       }
+//     }
+//
+//     erizoController = db.erizoControllers.findOne({_id: new ObjectId(erizoControllerId)});
+//
+//     if (erizoController) {
+//       room.erizoControllerId = new ObjectId(erizoControllerId);
+//       log.error(`[ROOMRG]db rooms  save room `);
+//       db.rooms.save( room );
+//     }
+//     log.warn(`[ROOMRG]db eval --end???--`);
+//     return erizoController;
+//   }, room._id + '', erizoControllerId + '', function(error, erizoController) {
+//     log.warn(`[ROOMRG]======1===`);
+//     if (error) log.warn('find err: assignErizoControllerToRoom error, ' + logger.objectToLog(error));
+//     if (callback) {
+//       log.warn('[ROOMRG] ---begin assignErizoControllerToRoom:  callback, ');
+//       callback(erizoController);
+//       log.warn('[ROMMRG] ---end assignErizoControllerToRoom:  callback, ');
+//
+//     }else
+//     {
+//       log.warn(`[ROOMRG]======no assignErizoControllerToRoom callback==`);
+//
+//     }
+//   });
+// };
+
+// /* eslint-disable */
+// exports.assignErizoControllerToRoom = function(room, erizoControllerId, callback) {
+//   console.log(`assignErizoControllerToRoom:  erizoControllerId`,erizoControllerId);
+//   return db.eval(function(id, erizoControllerId) {
+//     console.log(`[ROOMRG]db eval --begin--`);
+//     var erizoController;
+//     var room = db.rooms.findOne({_id: new ObjectId(id)});
+//     if (!room) {
+//       console.log(`[ROOMRG]db rooms findone fail ,no room `);
+//       return erizoController;
+//     }
+//
+//     if (room.erizoControllerId) {
+//       erizoController = db.erizoControllers.findOne({_id: room.erizoControllerId});
+//       if (erizoController) {
+//         console.log(`[ROOMRG]db rooms findone fail ,no room `);
+//         return erizoController;
+//       }
+//     }
+//
+//     erizoController = db.erizoControllers.findOne({_id: new ObjectId(erizoControllerId)});
+//
+//     if (erizoController) {
+//       room.erizoControllerId = new ObjectId(erizoControllerId);
+//       console.log(`[ROOMRG]db rooms  save room `);
+//       db.rooms.save( room );
+//     }
+//     console.log(`[ROOMRG]db eval --end???--`);
+//     return erizoController;
+//   }, room._id + '', erizoControllerId + '', function(error, erizoController) {
+//     console.log(`[ROOMRG]======1===`);
+//     if (error) console.log('find err: assignErizoControllerToRoom error, ' + logger.objectToLog(error));
+//     if (callback) {
+//       console.log('[ROOMRG] ---begin assignErizoControllerToRoom:  callback, ');
+//       callback(erizoController);
+//       console.log('[ROMMRG] ---end assignErizoControllerToRoom:  callback, ');
+//
+//     }else
+//     {
+//       console.log(`[ROOMRG]======no assignErizoControllerToRoom callback==`);
+//
+//     }
+//   });
+// };
+
+
 
 /* eslint-disable */
 exports.assignErizoControllerToRoom = function(room, erizoControllerId, callback) {

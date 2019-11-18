@@ -10,23 +10,23 @@
     }
   ],
   "levels": {
-    "AMQPER": "ERROR",
-    "Client": "INFO",
-    "Connection": "INFO",
-    "ErizoController": "INFO",
-    "ErizoJS": "INFO",
-    "ErizoJSController": "INFO",
-    "ErizoAgent": "INFO",
-    "ErizoAgentReporter": "ERROR",
-    "EcCloudHandler": "INFO",
-    "Publisher": "INFO",
-    "Subscriber": "INFO",
-    "Room": "INFO",
-    "RoomController": "INFO",
-    "RovClient":"INFO",
-    "RovMetricsServer":"INFO",
-    "RovReplManager":"INFO",
-    "RPCPublic":"ERROR"
+    "AMQPER": "INFO",
+    "Client": "  TRACE",
+    "Connection": "  TRACE",
+    "ErizoController": "  TRACE",
+    "ErizoJS": "  TRACE",
+    "ErizoJSController": "  TRACE",
+    "ErizoAgent": "  TRACE",
+    "ErizoAgentReporter": "  TRACE",
+    "EcCloudHandler": "  TRACE",
+    "Publisher": "  TRACE",
+    "Subscriber": "  TRACE",
+    "Room": "  TRACE",
+    "RoomController": "  TRACE",
+    "RovClient":"  TRACE",
+    "RovMetricsServer":"  TRACE",
+    "RovReplManager":"  TRACE",
+    "RPCPublic":"  TRACE"
   }
 }
 

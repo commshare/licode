@@ -1,0 +1,506 @@
+Existing packages for recipe bzip2/1.0.6@conan/stable:
+
+Existing recipe in remote 'conan-center':
+
+    Package_ID: 21fc7a58ae35d6b4a61dd45ed574875af2a2d593
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 25d69afe851bfb8cb5aedd20123fa41e061f316e
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 2eb37cafd83217ac3058d470de66db98bcde32fa
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 3501d7aeb54846262fe12ae8de8a71f5172582e4
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 3c88ad122762d62115d2625c9e8e54c12417952a
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 4604c72da6d53ff7234bc189ef2695b44e93734f
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 4d9f8e41a14c26008a5a07a7eef35816b76b3f07
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 534dcc368c999e07e81f146b3466b8f656ef1f55
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 53ea8d5c6406a6aa7a7611df7935452f6e82a975
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 8a596db75c36a0b08035a02a04f8946f55095084
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 8dbbd136f223c85771dfb8b96551e6887060f3a5
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: aa84d9aecf24e625da451318795116f31a55ba90
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: af96383df8ed9748d2eed48fb04099c5914a718f
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: bae6ea7b1dd126848471d5c8e77dc9772d1f591e
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: d9919ac7c04e8fae50a94bbc057f2e2dce5f69e9
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: d9bcd086a3755703e8d1d425bcc0b759e68d2f68
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: e1a8d4db69dc87303588a01d228f18e4edb71264
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: ea598ec51f506a4c0ce579fe1e9cbc6299458ebb
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: efade599c316ff31894228eb2bb7df33ad97f49d
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: f9c833125251629122f5d623a62cf122331caae7
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: True
+
+Existing recipe in remote 'conan-community':
+
+    Package_ID: 21fc7a58ae35d6b4a61dd45ed574875af2a2d593
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 25d69afe851bfb8cb5aedd20123fa41e061f316e
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 2eb37cafd83217ac3058d470de66db98bcde32fa
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 3501d7aeb54846262fe12ae8de8a71f5172582e4
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 3c88ad122762d62115d2625c9e8e54c12417952a
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 4604c72da6d53ff7234bc189ef2695b44e93734f
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 4d9f8e41a14c26008a5a07a7eef35816b76b3f07
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 534dcc368c999e07e81f146b3466b8f656ef1f55
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: 53ea8d5c6406a6aa7a7611df7935452f6e82a975
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 8a596db75c36a0b08035a02a04f8946f55095084
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: 8dbbd136f223c85771dfb8b96551e6887060f3a5
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: aa84d9aecf24e625da451318795116f31a55ba90
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: af96383df8ed9748d2eed48fb04099c5914a718f
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: bae6ea7b1dd126848471d5c8e77dc9772d1f591e
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: d9919ac7c04e8fae50a94bbc057f2e2dce5f69e9
+        [options]
+            build_executable: True
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: False
+
+    Package_ID: d9bcd086a3755703e8d1d425bcc0b759e68d2f68
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: e1a8d4db69dc87303588a01d228f18e4edb71264
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 7.3
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: ea598ec51f506a4c0ce579fe1e9cbc6299458ebb
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 10.0
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: efade599c316ff31894228eb2bb7df33ad97f49d
+        [options]
+            fPIC: True
+            shared: False
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 8.1
+            os: Macos
+        Outdated from recipe: True
+
+    Package_ID: f9c833125251629122f5d623a62cf122331caae7
+        [options]
+            fPIC: True
+            shared: True
+        [settings]
+            arch: x86_64
+            build_type: Release
+            compiler: apple-clang
+            compiler.version: 9.0
+            os: Macos
+        Outdated from recipe: True
+

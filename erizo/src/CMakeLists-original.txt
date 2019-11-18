@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 2.6)
 
 find_package(PkgConfig)
 #functions
@@ -27,7 +27,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   endif()
 endif()
 
-##是否编译example
 option (COMPILE_EXAMPLES "COMPILE_EXAMPLES" OFF)
 
 set(ERIZO_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
@@ -35,8 +34,6 @@ set(ERIZO_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
 set(CMAKE_MACOSX_RPATH 1)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/" "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/")
-
-###DOXY
 find_package (Doxygen)
 if(DOXYGEN_FOUND)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in" "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile" @ONLY)
@@ -47,7 +44,6 @@ if(DOXYGEN_FOUND)
   )
 endif(DOXYGEN_FOUND)
 
-##代码
 set (ERIZO_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/erizo)
 set (ERIZO_TEST ${CMAKE_CURRENT_SOURCE_DIR}/test)
 
@@ -74,39 +70,10 @@ find_package(Glib REQUIRED)
 include_directories(${GLIB_INCLUDE_DIRS})
 
 # BOOST
-##boost默认已经安装，路径是啥？？？
-#include(${CMAKE_CURRENT_SOURCE_DIR}/../conan_paths.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../conan_paths.cmake)
 set (BOOST_LIBS thread regex system)
 find_package(boost)
 include_directories(${boost_INCLUDE_DIRS})
-
-
-message(STATUS "---------------------")
-message(STATUS "Boost_FOUND: ${Boost_FOUND}")
-message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
-message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
-message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
-message(STATUS "---------------------")
-
-###${boost_LIBRARIES}
-##/usr/local/Cellar/boost/1.71.0
-message("==boost===  ${boost_LIBRARIES}  ")
-###自己设置好了，这样最快
-set(boost_INCLUDE_DIRS "/usr/local/Cellar/boost/1.71.0/include")
-set(Boost_INCLUDE_DIRS "/usr/local/Cellar/boost/1.71.0/include")
-set(Boost_LIBRARY_DIRS "/usr/local/Cellar/boost/1.71.0/lib")
-
-find_package(Boost 1.71.0 COMPONENTS thread regex system REQUIRED)
-if(Boost_FOUND)
-  include_directories(${Boost_INCLUDE_DIRS})
-  message(STATUS "----------find boost 1.71.0-----------")
-  ##--  Boost_LIBRARIES ===Boost::thread;Boost::regex;Boost::system
-  message(STATUS " Boost_LIBRARIES ===${Boost_LIBRARIES}")
-
-  #add_executable(10_file_io ${SOURCE_FILES})
-  #target_link_libraries(your_project_name ${Boost_LIBRARIES})
-endif()
-
 
 set(ERIZO_CMAKE_CXX_FLAGS "${ERIZO_CMAKE_CXX_FLAGS} -DBOOST_THREAD_PROVIDES_FUTURE -DBOOST_THREAD_PROVIDES_FUTURE_CONTINUATION -DBOOST_THREAD_PROVIDES_FUTURE_WHEN_ALL_WHEN_ANY")
 
@@ -123,30 +90,10 @@ find_library(NICE nice HINTS "${THIRD_PARTY_LIB}")
 test_lib(${NICE})
 
 # OPENSSL
-##export LDFLAGS=-L/usr/local/opt/openssl/lib
-## export CPPFLAGS=-I/usr/local/opt/openssl/include
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    include_directories("/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/include")
-    link_directories("/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib")
-  #include_directories("/usr/local/opt/openssl/include")
-  #link_directories("/usr/local/opt/openssl/lib")
-  #link_directories("/usr/lib")
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-
 find_library(SSL ssl HINTS "${THIRD_PARTY_LIB}")
 test_lib(${SSL})
 find_library(CRYPTO crypto HINTS "${THIRD_PARTY_LIB}")
 test_lib(${CRYPTO})
-message("==OPENSSL=1==  ${SSL} ${CRYPTO} ")
-
-##to link our own openssl
-##/usr/lib/libssl.dylib /usr/lib/libcrypto.dylib
-set(SSL "/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libssl.a")
-set(CRYPTO "/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libcrypto.a")
-message("==OPENSSL==2=  ${SSL} ${CRYPTO} ")
-
-
-
 
 # Libav
 find_library(AVUTIL avutil HINTS "${THIRD_PARTY_LIB}")
@@ -185,8 +132,6 @@ else()
 endif()
 set(GMOCK_BUILD "${CMAKE_CURRENT_BINARY_DIR}/libdeps/gmock")
 set(GMOCK_VERSION "1.8.0")
-
-##外部工程是gtest
 ExternalProject_Add(gtest
   URL "https://github.com/google/googletest/archive/release-${GMOCK_VERSION}.tar.gz"
   PREFIX ${GMOCK_BUILD}

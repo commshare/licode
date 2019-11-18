@@ -13,14 +13,14 @@ class HandlerManagerListener {
 };
 
 class HandlerManager : public Service {
- public:
-  explicit HandlerManager(std::weak_ptr<HandlerManagerListener> listener) : listener_{listener} {}
-  virtual ~HandlerManager() = default;
+      public:
+      explicit HandlerManager(std::weak_ptr<HandlerManagerListener> listener) : listener_{listener} {}
+      virtual ~HandlerManager() = default;
 
-  void notifyUpdateToHandlers() {
-    if (auto listener = listener_.lock()) {
-      listener->notifyUpdateToHandlers();
-    }
+      void notifyUpdateToHandlers() {
+        if (auto listener = listener_.lock()) {
+          listener->notifyUpdateToHandlers();
+        }
   }
  private:
   std::weak_ptr<HandlerManagerListener> listener_;

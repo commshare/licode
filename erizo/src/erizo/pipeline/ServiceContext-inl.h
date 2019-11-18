@@ -49,7 +49,7 @@ class ServiceContextImplBase : public PipelineServiceContext {
       service_ptr->attachPipeline(impl_);
       attached_ = true;
     }
-  }
+}
 
   void detachPipeline() override {
     auto service_ptr = service_.lock();

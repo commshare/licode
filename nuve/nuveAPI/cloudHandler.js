@@ -64,6 +64,7 @@ const getEcQueue = (callback) => {
 };
 
 const assignErizoController = (erizoControllerId, room, callback) => {
+  log.warn(`assignErizoController=> roomRegistry assignErizoControllerToRoom`);
   roomRegistry.assignErizoControllerToRoom(room, erizoControllerId, callback);
 };
 
@@ -144,9 +145,11 @@ const addNewAmazonErizoController = (privateIP, hostname, port, ssl, callback) =
 
 exports.addNewErizoController = (msg, callback) => {
   if (msg.cloudProvider === '') {
+    console.log("addNewErizoController from a null provider");
     addNewPrivateErizoController(msg.ip, msg.hostname, msg.port, msg.ssl, callback);
   } else if (msg.cloudProvider === 'amazon') {
-    addNewAmazonErizoController(msg.ip, msg.hostname, msg.port, msg.ssl, callback);
+    addNewAmazonErizoController(msg.ip,
+        msg.hostname, msg.port, msg.ssl, callback);
   }
 };
 
@@ -157,10 +160,10 @@ exports.keepAlive = (id, callback) => {
     if (erizoController) {
       erizoControllerRegistry.updateErizoController(id, { keepAlive: 0 });
       result = 'ok';
-          // log.info('KA: ', id);
+      //log.info('[CLOUD HANDLER]received a keepAlive message KA: ', id);
     } else {
       result = 'whoareyou';
-      log.warn('I received a keepAlive message from an unknown erizoController');
+     // log.warn('I received a keepAlive message from an unknown erizoController');
     }
     callback(result);
   });
@@ -177,47 +180,62 @@ exports.killMe = (ip) => {
 
 const getErizoControllerForRoom = (room, callback) => {
   const roomId = room._id;
+  log.info('[CLOUD HANDLER]: -1- getErizoControllerForRoom in ', roomId);
 
   roomRegistry.getRoom(roomId, (roomResult) => {
     const id = roomResult.erizoControllerId;
+    log.info('[CLOUD HANDLER]:  getRoom=>roomResult.erizoControllerId  ', id);
     if (id) {
       erizoControllerRegistry.getErizoController(id, (erizoController) => {
         if (erizoController) {
+          log.info('[CLOUD HANDLER]: getErizoController=- getErizoControllerForRoom has erizoController  ');
           callback(erizoController);
         } else {
+          log.info('[CLOUD HANDLER]: -4- getErizoControllerForRoom no erizoController  ');
           roomResult.erizoControllerId = undefined;
           roomRegistry.updateRoom(roomResult._id, roomResult);
           getErizoControllerForRoom(roomResult, callback);
         }
       });
       return;
+    }else{ //走这里，因为id未定义
+      log.info('[CLOUD HANDLER]: -2- getErizoControllerForRoom in ', roomId,' no id ');
     }
+
 
     let attempts = 0;
     let intervalId;
 
     getEcQueue((ecQueue) => {
+      log.info('[CLOUD HANDLER]:-getEcQueue=> clk for roomid ', roomId);
       intervalId = setInterval(() => {
         let erizoController;
-        if (getErizoController) {
+        if (getErizoController) { //从getErizoController获取
+          log.info('[CLOUD HANDLER]:-7->setInterval--getErizoController--=>roomid ', roomId);
           erizoController = getErizoController(room, ecQueue);
         } else {
+          log.info('[CLOUD HANDLER]:-8-setInterval=> ecQueue[0] ', ecQueue[0]);
           erizoController = ecQueue[0];
         }
         const erizoControllerId = erizoController ? erizoController._id : undefined;
 
         if (erizoControllerId !== undefined) {
           assignErizoController(erizoControllerId, room, (assignedEc) => {
+            log.info('[CLOUD HANDLER]:-begin -6 getErizoControllerForRoom assignErizoController clk erizoControllerId ', erizoControllerId);
             callback(assignedEc);
+            log.info('[CLOUD HANDLER]:- end -6 getErizoControllerForRoom assignErizoController clk for roomid ', roomId);
+
             clearInterval(intervalId);
           });
         }
-
+        log.info('[CLOUD HANDLER]:-9-------=>roomid ', roomId);
         if (attempts > TOTAL_ATTEMPTS_EC_READY) {
           clearInterval(intervalId);
+          log.info('[CLOUD HANDLER]: -5- getErizoControllerForRoom attempts fail timeout for roomid ', roomId);
           callback('timeout');
         }
         attempts += 1;
+        log.info('[CLOUD HANDLER]:-10-------=>attempts ', attempts);
       }, INTERVAL_TIME_EC_READY);
     });
   });

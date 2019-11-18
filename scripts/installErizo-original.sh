@@ -34,7 +34,6 @@ Compile erizo libraries:
 - Spine is a node.js based Erizo client
 
 OPTIONS:
-   -b      build erizo without conan
    -h      Show this message
    -e      Compile Erizo
    -a      Compile Erizo API
@@ -56,28 +55,7 @@ check_result() {
     exit $1
   fi
 }
-install_my_erizo(){
-  echo '===1===Installing my erizo...'
-  export LDFLAGS=-L/usr/local/opt/openssl/lib && export CPPFLAGS=-I/usr/local/opt/openssl/include
 
-  cd $ROOT/erizo
- # cd utils/conan-include-paths
- # conan export . lynckia/includes
-#  cd ../..
-#  conan install . --build IncludePathsGenerator
-echo `pwd`
-echo "===call  generateProject.sh"
-  ./generateProject.sh
-  echo "===call  buildProject.sh" 
-  echo $FAST_MAKE
-
-  ./buildProject.sh $FAST_MAKE
-  if [ "$DELETE_OBJECT_FILES" == "true" ]; then
-    ./cleanObjectFiles.sh
-  fi
-  check_result $?
-  cd $CURRENT_DIR
-}
 install_erizo(){
   echo 'Installing erizo...'
   cd $ROOT/erizo
@@ -99,7 +77,7 @@ install_erizo_api(){
   cd $ROOT/erizoAPI
   . $NVM_CHECK
   nvm use
-  npm install nan@2.13.1 --save
+  npm install nan@2.13.1
   $FAST_BUILD ./build.sh
   check_result $?
   cd $CURRENT_DIR
@@ -137,15 +115,12 @@ then
   install_erizo_controller
   install_spine
 else
-  while getopts “bheacstfd” OPTION
+  while getopts “heacstfd” OPTION
   do
     case $OPTION in
       h)
         usage
         exit 1
-        ;;
-      b)
-        install_my_erizo
         ;;
       e)
         install_erizo

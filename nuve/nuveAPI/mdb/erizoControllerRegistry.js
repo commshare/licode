@@ -13,6 +13,7 @@ exports.getErizoControllers = (callback) => {
     if (err || !erizoControllers) {
       log.info('message: service getList empty');
     } else {
+     // log.info('message: service get CONTROLLER List OK');
       callback(erizoControllers);
     }
   });
@@ -33,8 +34,10 @@ exports.getErizoController = getErizoController;
 const hasErizoController = (id, callback) => {
   getErizoController(id, (erizoController) => {
     if (erizoController === undefined) {
+      log.info('message: hasErizoController FAIL');
       callback(false);
     } else {
+      log.info('message: hasErizoController OK');
       callback(true);
     }
   });

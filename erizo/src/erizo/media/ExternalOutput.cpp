@@ -14,6 +14,11 @@
 #include "rtp/QualityFilterHandler.h"
 #include "rtp/LayerBitrateCalculationHandler.h"
 
+//add for ffmpeg4 begin
+#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)
+#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
+//end
+
 using std::memcpy;
 
 namespace erizo {
@@ -392,7 +397,7 @@ bool ExternalOutput::initContext() {
     video_stream_->metadata = genVideoMetadata();
     // A decent guess here suffices; if processing the file with ffmpeg,
     // use -vsync 0 to force it not to duplicate frames.
-    video_stream_->codec->pix_fmt = PIX_FMT_YUV420P;
+    video_stream_->codec->pix_fmt = AV_PIX_FMT_YUV420P;
     if (context_->oformat->flags & AVFMT_GLOBALHEADER) {
       video_stream_->codec->flags |= CODEC_FLAG_GLOBAL_HEADER;
     }
