@@ -101,6 +101,7 @@ class ErizoConnection extends EventEmitterConst {
   }
 
   sendOffer() {
+    Logger.info('==sendOffer==');
     this.stack.sendOffer();
   }
 

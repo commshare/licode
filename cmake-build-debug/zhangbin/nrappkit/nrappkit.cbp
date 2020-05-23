@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="nrappkit"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_thread-1.71.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\;CMake Files\zhangbin\;CMake Files\zhangbin\nrappkit\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nrappkit">
+				<Option output="/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/nrappkit/libnrappkit.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-D_DEBUG"/>
+					<Add option="-D_USEMAC"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include}"/>
+					<Add directory="/usr/local/opt/openssl/include"/>
+					<Add directory="/usr/local/Cellar/libevent/2.1.11_1/include"/>
+					<Add directory="/usr/local/Cellar/libevent/2.1.11_1/include/event2"/>
+					<Add directory="/usr/local/opt/zlib/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/tclap-1.2.2/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/erizo/src/third_party/webrtc/src"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/include/OSSupport"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/server"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/server/Protocol"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/polarssl-1.3.9/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/jsoncpp-1.6.5/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/include"/>
+					<Add directory="./src/event"/>
+					<Add directory="./src/log"/>
+					<Add directory="./src/port/generic/include"/>
+					<Add directory="./src/registry"/>
+					<Add directory="./src/share"/>
+					<Add directory="./src/plugin"/>
+					<Add directory="./src/stats"/>
+					<Add directory="./src/util"/>
+					<Add directory="./src/util/libekr"/>
+					<Add directory="./src/port/darwin/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/event"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/log"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/plugin"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/port"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/registry"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/share"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/stats"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/util"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 nrappkit"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nrappkit/fast">
+				<Option output="/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/nrappkit/libnrappkit.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-D_DEBUG"/>
+					<Add option="-D_USEMAC"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include}"/>
+					<Add directory="/usr/local/opt/openssl/include"/>
+					<Add directory="/usr/local/Cellar/libevent/2.1.11_1/include"/>
+					<Add directory="/usr/local/Cellar/libevent/2.1.11_1/include/event2"/>
+					<Add directory="/usr/local/opt/zlib/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/tclap-1.2.2/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/erizo/src/third_party/webrtc/src"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/include/OSSupport"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/server"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/server/Protocol"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/polarssl-1.3.9/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/thirdparty/jsoncpp-1.6.5/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/include"/>
+					<Add directory="./src/event"/>
+					<Add directory="./src/log"/>
+					<Add directory="./src/port/generic/include"/>
+					<Add directory="./src/registry"/>
+					<Add directory="./src/share"/>
+					<Add directory="./src/plugin"/>
+					<Add directory="./src/stats"/>
+					<Add directory="./src/util"/>
+					<Add directory="./src/util/libekr"/>
+					<Add directory="./src/port/darwin/include"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/event"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/log"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/plugin"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/port"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/registry"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/share"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/stats"/>
+					<Add directory="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/./src/util"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 nrappkit/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/event/async_timer.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/event/async_timer.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/event/async_wait.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/event/async_wait.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/event/async_wait_int.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/log/r_log.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/log/r_log.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/port/darwin/include/csi_platform.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/c2ru.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/c2ru.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registry.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registry.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registry_int.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registry_local.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registry_vtbl.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/registry/registrycb.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/share/nr_common.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/share/nr_reg_keys.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/byteorder.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/byteorder.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/hex.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/hex.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/assoc.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/debug.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/debug.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_assoc.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_assoc.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_common.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_crc32.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_crc32.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_data.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_data.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_defaults.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_errors.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_errors.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_includes.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_list.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_list.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_macros.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_memory.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_memory.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_thread.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_time.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_time.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/libekr/r_types.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/p_buf.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/p_buf.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/util.c">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/src/util/util.h">
+			<Option target="nrappkit"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/BoostDetectToolset-1.71.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/Boost-1.71.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_headers-1.71.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_headers-1.71.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_thread-1.71.0/boost_thread-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_thread-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_thread-1.71.0/boost_thread-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_thread-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_thread-1.71.0/libboost_thread-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_thread-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_thread-1.71.0/libboost_thread-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_thread-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/boost_regex-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/boost_regex-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/libboost_regex-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/libboost_regex-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/libboost_regex-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_regex-1.71.0/libboost_regex-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_regex-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/../../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/zhangbin/tet/licodelllcode/licode/zhangbin/nrappkit/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zhangbin\nrappkit\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

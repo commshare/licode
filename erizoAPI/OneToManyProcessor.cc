@@ -119,7 +119,7 @@ NAN_METHOD(OneToManyProcessor::setPublisher) {
 
   MediaStream* param = Nan::ObjectWrap::Unwrap<MediaStream>(Nan::To<v8::Object>(info[0]).ToLocalChecked());
   auto wr = std::shared_ptr<erizo::MediaStream>(param->me);
-
+ //设置发布者 wr还是mediastream啊，mediastream是mediasource的子类，可以这么转
   std::shared_ptr<erizo::MediaSource> ms = std::dynamic_pointer_cast<erizo::MediaSource>(wr);
   me->setPublisher(ms);
 }

@@ -20,6 +20,7 @@ namespace erizo {
   OneToManyProcessor::~OneToManyProcessor() {
   }
 
+  //分发音频数据包
   int OneToManyProcessor::deliverAudioData_(std::shared_ptr<DataPacket> audio_packet) {
     if (audio_packet->length <= 0)
       return 0;
@@ -31,6 +32,7 @@ namespace erizo {
     std::map<std::string, std::shared_ptr<MediaSink>>::iterator it;
     RtpHeader* head = reinterpret_cast<RtpHeader*>(audio_packet->data);
     RtcpHeader* chead = reinterpret_cast<RtcpHeader*>(audio_packet->data);
+    //每个订阅者都来一份音频数据包
     for (it = subscribers.begin(); it != subscribers.end(); ++it) {
       if ((*it).second != nullptr) {
         // Hack to avoid audio drifting in Chrome.
@@ -47,6 +49,7 @@ namespace erizo {
     return 0;
   }
 
+  //检查给定的ssrc 是不是订阅者订阅过的
   bool OneToManyProcessor::isSSRCFromAudio(uint32_t ssrc) {
     std::map<std::string, std::shared_ptr<MediaSink>>::iterator it;
     for (it = subscribers.begin(); it != subscribers.end(); ++it) {
@@ -57,10 +60,12 @@ namespace erizo {
     return false;
   }
 
+  //分发视频数据
   int OneToManyProcessor::deliverVideoData_(std::shared_ptr<DataPacket> video_packet) {
     if (video_packet->length <= 0)
       return 0;
     RtcpHeader* head = reinterpret_cast<RtcpHeader*>(video_packet->data);
+    //如果视频数据李有fc，那么还要把这个视频包给fc
     if (head->isFeedback()) {
       ELOG_WARN("Receiving Feedback in wrong path: %d", head->packettype);
       deliverFeedback_(video_packet);
@@ -70,9 +75,11 @@ namespace erizo {
     if (subscribers.empty())
       return 0;
     std::map<std::string, std::shared_ptr<MediaSink>>::iterator it;
+    //TODO 有点看不懂了，head和rhead不是一样的么？
     RtpHeader* rhead = reinterpret_cast<RtpHeader*>(video_packet->data);
     uint32_t ssrc = head->isRtcp() ? head->getSSRC() : rhead->getSSRC();
     uint32_t ssrc_offset = translateAndMaybeAdaptForSimulcast(ssrc);
+    //查看每个订阅者
     for (it = subscribers.begin(); it != subscribers.end(); ++it) {
       if ((*it).second != nullptr) {
         uint32_t base_ssrc = (*it).second->getVideoSinkSSRC();
@@ -82,6 +89,7 @@ namespace erizo {
           rhead->setSSRC(base_ssrc + ssrc_offset);
         }
         // Note: deliverVideoData must copy the packet inmediately
+        //传递的是共享指针
         (*it).second->deliverVideoData(video_packet);
       }
     }
@@ -125,6 +133,7 @@ namespace erizo {
     boost::unique_lock<boost::mutex> lock(monitor_mutex_);
     if (subscribers.empty())
       return 0;
+    //还是要把event给所有的订阅者，1vs多
     std::map<std::string, std::shared_ptr<MediaSink>>::iterator it;
     for (it = subscribers.begin(); it != subscribers.end(); ++it) {
       if ((*it).second != nullptr) {
@@ -134,6 +143,7 @@ namespace erizo {
     return 0;
   }
 
+  //peerid是这个订阅者的唯一标识吧，后面用来作为map的key了。
   void OneToManyProcessor::addSubscriber(std::shared_ptr<MediaSink> subscriber_stream,
       const std::string& peer_id) {
     ELOG_DEBUG("Adding subscriber");
@@ -155,6 +165,7 @@ namespace erizo {
     this->subscribers[peer_id] = subscriber_stream;
   }
 
+  //也是根据peerid找到订阅者
   void OneToManyProcessor::removeSubscriber(const std::string& peer_id) {
     ELOG_DEBUG("Remove subscriber %s", peer_id.c_str());
     boost::mutex::scoped_lock lock(monitor_mutex_);

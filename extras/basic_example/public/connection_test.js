@@ -24,7 +24,7 @@ window.onload = () => {
         callback(req.responseText);
       }
     };
-
+    console.log("POST ",url);
     req.open('POST', url, true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.send(JSON.stringify(body));
@@ -32,19 +32,29 @@ window.onload = () => {
 
   createToken('user', 'presenter', (response) => {
     const token = response;
-    console.log(token);
+    console.log("createToken ",token);
+    //使用token创建一个房间
+
     room = Erizo.Room({ token });
 
     localStream.addEventListener('access-accepted', () => {
+      console.log('access-accepted');
       printText('Mic and Cam OK');
       const subscribeToStreams = (streams) => {
+        console.log('subscribeToStreams');
         streams.forEach((stream) => {
+          console.log('subscribeToStreams   ',stream);
+
           room.subscribe(stream);
         });
       };
 
       room.addEventListener('room-connected', () => {
-        printText('Connected to the room OK');
+        console.log('room-connected');
+
+        printText('Connected to the room OK==> local publish==>');
+        console.log(' room.publish(localStream, { maxVideoBW: 300 })');
+        console.log('room-connected==>publish');
         room.publish(localStream, { maxVideoBW: 300 });
       });
 

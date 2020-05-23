@@ -110,7 +110,7 @@ NAN_MODULE_INIT(WebRtcConnection::Init) {
   tpl->SetClassName(Nan::New("WebRtcConnection").ToLocalChecked());
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
-  // Prototype
+  // Prototypef
   Nan::SetPrototypeMethod(tpl, "close", close);
   Nan::SetPrototypeMethod(tpl, "init", init);
   Nan::SetPrototypeMethod(tpl, "setRemoteDescription", setRemoteDescription);
@@ -131,17 +131,17 @@ NAN_MODULE_INIT(WebRtcConnection::Init) {
   Nan::Set(target, Nan::New("WebRtcConnection").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
 }
 
-
+//构造一个空的 不太配置的，这个info是从哪里来的?
 NAN_METHOD(WebRtcConnection::New) {
   if (info.Length() < 7) {
     Nan::ThrowError("Wrong number of arguments");
   }
 
   if (info.IsConstructCall()) {
-    // Invoked as a constructor with 'new WebRTC()'
+    // Invoked as a constructor with 'new WebRTC()'， 首先创建 ThreadPool 和  IOThreadPool ，他们也是来自info
     ThreadPool* thread_pool = Nan::ObjectWrap::Unwrap<ThreadPool>(Nan::To<v8::Object>(info[0]).ToLocalChecked());
     IOThreadPool* io_thread_pool = Nan::ObjectWrap::Unwrap<IOThreadPool>(Nan::To<v8::Object>(info[1]).ToLocalChecked());
-    v8::String::Utf8Value paramId(Nan::To<v8::String>(info[2]).ToLocalChecked());
+    v8::String::Utf8Value paramId(Nan::To<v8::String>(info[2]).ToLocalChecked()); //看起来这个id也是info传递的
     std::string wrtcId = std::string(*paramId);
     v8::String::Utf8Value param(Nan::To<v8::String>(info[3]).ToLocalChecked());
     std::string stunServer = std::string(*param);
@@ -152,13 +152,13 @@ NAN_METHOD(WebRtcConnection::New) {
     v8::String::Utf8Value json_param(Nan::To<v8::String>(info[8]).ToLocalChecked());
     bool use_nicer = (info[9]->ToBoolean())->BooleanValue();
     bool enable_connection_quality_check = (info[10]->ToBoolean())->BooleanValue();
-    std::string media_config_string = std::string(*json_param);
-    json media_config = json::parse(media_config_string);
+    std::string media_config_string = std::string(*json_param);//json字符串
+    json media_config = json::parse(media_config_string);//解析为json格式
     std::vector<erizo::RtpMap> rtp_mappings;
     if (media_config.find("rtpMappings") != media_config.end()) {
       json rtp_map_json = media_config["rtpMappings"];
       for (json::iterator it = rtp_map_json.begin(); it != rtp_map_json.end(); ++it) {
-        erizo::RtpMap rtp_map;
+        erizo::RtpMap rtp_map; //使用json填充erizo::RtpMap
         if (it.value()["payloadType"].is_number()) {
           rtp_map.payload_type = it.value()["payloadType"];
         } else {
@@ -205,7 +205,7 @@ NAN_METHOD(WebRtcConnection::New) {
               rtp_map.feedback_types.push_back(*feedback_it);
           }
         }
-        rtp_mappings.push_back(rtp_map);
+        rtp_mappings.push_back(rtp_map);//插入rtp_mappings 数组
       }
     }
 
@@ -229,7 +229,7 @@ NAN_METHOD(WebRtcConnection::New) {
       std::string turnPass = std::string(*param4);
       v8::String::Utf8Value param5(Nan::To<v8::String>(info[15]).ToLocalChecked());
       std::string network_interface = std::string(*param5);
-
+      //ice的turn配置
       iceConfig.turn_server = turnServer;
       iceConfig.turn_port = turnPort;
       iceConfig.turn_username = turnUsername;
@@ -237,17 +237,17 @@ NAN_METHOD(WebRtcConnection::New) {
       iceConfig.network_interface = network_interface;
     }
 
-
+    //ice的stun配置
     iceConfig.stun_server = stunServer;
     iceConfig.stun_port = stunPort;
     iceConfig.min_port = minPort;
     iceConfig.max_port = maxPort;
     iceConfig.should_trickle = trickle;
     iceConfig.use_nicer = use_nicer;
-
+    //用来创建一个erizo::WebRtcConnection的
     std::shared_ptr<erizo::Worker> worker = thread_pool->me->getLessUsedWorker();
     std::shared_ptr<erizo::IOWorker> io_worker = io_thread_pool->me->getLessUsedIOWorker();
-
+    //这个是api的，不是erzio的
     WebRtcConnection* obj = new WebRtcConnection();
     obj->id_ = wrtcId;
     obj->me = std::make_shared<erizo::WebRtcConnection>(worker, io_worker, wrtcId, iceConfig,

@@ -123,6 +123,7 @@ describe('Erizo Controller / Erizo Controller', () => {
     });
 
     describe('on Token', () => {
+      //签名
       const arbitrarySignature = 'c2lnbmF0dXJl';  // signature
       const arbitraryGoodToken = {
         tokenId: 'tokenId',

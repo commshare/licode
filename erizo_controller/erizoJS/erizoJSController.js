@@ -142,7 +142,7 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
     clients.delete(client.id);
     callback('callback', true);
     if (clients.size === 0) {
-      log.info('message: Removed all clients. Process will exit');
+      log.info('message: Removed all clients. Process will [exit]');
       process.exit(0);
     }
   };
@@ -154,6 +154,7 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
   that.addExternalInput = (erizoControllerId, streamId, url, label, callbackRpc) => {
     updateUptimeInfo();
     if (publishers[streamId] === undefined) {
+      console.log(' addExternalInput==>getOrCreateClient url '+url);
       const client = getOrCreateClient(erizoControllerId, url);
       publishers[streamId] = new ExternalInput(url, streamId, label, threadPool);
       const ei = publishers[streamId];
@@ -184,35 +185,62 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
     }
   };
 
+  //ej contorller 负责处理？
   that.processConnectionMessage = (erizoControllerId, clientId, connectionId, msg,
       callbackRpc = () => {}) => {
-    log.info('message: Process Connection message, ' +
+    //难道回调到这里来了，callbackRpc
+    log.info('[callbackRpc]message: Process Connection message, ' +
       `clientId: ${clientId}, connectionId: ${connectionId}`);
+    console.log(' processConnectionMessage [callbackRpc]message: Process Connection message, ' +
+        `clientId: ${clientId}, connectionId: ${connectionId}`);
     let error;
+    //根据clientid 获取客户端
     const client = clients.get(clientId);
     if (!client) {
       log.warn('message: Process Connection message to unknown clientId, ' +
         `clientId: ${clientId}, connectionId: ${connectionId}`);
       error = 'client-not-found';
+      console.log("=== client-not-found");
     }
-
+    console.log("$$$$$  connectionId ",connectionId);
+    //根据connectionid 获取链接
     const connection = client.getConnection(connectionId);
     if (!connection) {
       log.warn('message: Process Connection message to unknown connectionId, ' +
         `clientId: ${clientId}, connectionId: ${connectionId}`);
       error = 'connection-not-found';
+      console.log("$$$$$ error getConnection not found ",connectionId);
+    }else
+    {
+      log.warn('client.getConnection  ok 1');
+      console.log("=== getConnection ok 1 ");
     }
 
+
+
     if (error) {
+      log.error('client.getConnection fail ',error);
+      console.log(" ---- client.getConnection fail ",error);
       callbackRpc('callback', { error });
       return Promise.resolve();
+    }else
+    {
+      log.warn('client.getConnection  ok 2');
+      console.log(" ---- lient.getConnection  ok 2 ");
     }
 
     if (msg.type === 'failed') {
+      log.warn('client.forceCloseConnection  ');
+      console.log('client.forceCloseConnection  ');
+
       client.forceCloseConnection(connectionId);
     }
 
+    //onSignalingMessage
     return connection.onSignalingMessage(msg).then(() => {
+      log.info("onSignalingMessage "+msg);
+      console.log('cconnection.onSignalingMessage  ',msg);
+
       callbackRpc('callback', {});
     });
   };
@@ -241,7 +269,7 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
     node.onStreamMessage(msg);
   };
 
-  /*
+  /*向房间添加一个发布者
    * Adds a publisher to the room. This creates a new OneToManyProcessor
    * and a new WebRtcConnection. This WebRtcConnection will be the publisher
    * of the OneToManyProcessor.
@@ -250,28 +278,38 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
     updateUptimeInfo();
     let publisher;
     log.info('addPublisher, clientId', clientId, 'streamId', streamId);
+    log.info('addPublisher, options', options);
+
+    log.info('addPublisher, options trickleIce', options.trickleIce);
+    log.info('addPublisher, options createOffer', options.createOffer);
     const client = getOrCreateClient(erizoControllerId, clientId, options.singlePC);
 
     if (publishers[streamId] === undefined) {
+      log.info('====publishers[streamId] === undefined==');
       // eslint-disable-next-line no-param-reassign
       options.publicIP = that.publicIP;
       // eslint-disable-next-line no-param-reassign
       options.privateRegexp = that.privateRegexp;
+      console.log("====getOrCreateConnection==options ",options);
       const connection = client.getOrCreateConnection(options);
       log.info('message: Adding publisher, ' +
         `clientId: ${clientId}, ` +
         `streamId: ${streamId}`,
         logger.objectToLog(options),
         logger.objectToLog(options.metadata));
+      //创建一个发布者
+      log.info('====创建一个发布者==');
       publisher = new Publisher(clientId, streamId, connection, options);
       publishers[streamId] = publisher;
       publisher.initMediaStream();
       publisher.on('callback', onAdaptSchemeNotify.bind(this, callbackRpc));
       publisher.on('periodic_stats', onPeriodicStats.bind(this, streamId, undefined));
       publisher.promise.then(() => {
+        log.info('====connection.init=options.createOffer ',options.createOffer );
         connection.init(options.createOffer);
       });
       connection.onInitialized.then(() => {
+        log.info('====connection.onInitialized= connection.id',connection.id);
         callbackRpc('callback', { type: 'initializing', connectionId: connection.id });
       });
       connection.onReady.then(() => {
@@ -280,6 +318,7 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
       connection.onStarted.then(() => {
         callbackRpc('callback', { type: 'started' });
       });
+
       if (options.createOffer) {
         let onEvent;
         if (options.trickleIce) {
@@ -288,9 +327,15 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
           onEvent = connection.onGathered;
         }
         onEvent.then(() => {
+          log.info('====onEvent.then sendOffer=');
+          console.log("connection onEvent.then [sendOffer] ,connection ",connection);
           connection.sendOffer();
         });
+      }else
+      {
+        console.log("error options no createOffer ");
       }
+
     } else {
       publisher = publishers[streamId];
       if (publisher.numSubscribers === 0) {
@@ -361,6 +406,7 @@ exports.ErizoJSController = (erizoJSId, threadPool, ioThreadPool) => {
         onEvent = connection.onGathered;
       }
       onEvent.then(() => {
+        console.log('@@@onEvent.then==> sendoffer');
         connection.sendOffer();
       });
     }

@@ -67,6 +67,7 @@ class Room extends events.EventEmitter {
 
   onRoomControllerEvent(type, evt) {
     if (type === 'unpublish') {
+      log.info('--onRoomControllerEvent type unpublish@@@@');
         // It's supposed to be an integer.
       const streamId = parseInt(evt, 10);
       log.warn('message: Triggering removal of stream ' +
@@ -78,6 +79,7 @@ class Room extends events.EventEmitter {
   }
 
   sendConnectionMessageToClient(clientId, connectionId, info, evt) {
+    console.log("####===SEND connection_message_erizo TO CLIENT#######");
     const client = this.getClientById(clientId);
     if (client) {
       client.sendMessage('connection_message_erizo', { connectionId, info, evt });

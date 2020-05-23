@@ -8,7 +8,7 @@ import VideoPlayer from './views/VideoPlayer';
 import AudioPlayer from './views/AudioPlayer';
 import Logger from './utils/Logger';
 
-/*
+/* 代表本地或者 对端流，处理webrtc流，确定流，并且找到这个流在哪里绘制
  * Class Stream represents a local or a remote Stream in the Room. It will handle the WebRTC
  * stream and identify the stream and where it should be drawn.
  */
@@ -42,18 +42,22 @@ const Stream = (altConnectionHelpers, specInput) => {
     spec.label = `ei_${Random.getRandomValue()}`;
   }
   const onStreamAddedToPC = (evt) => {
+    console.log("onStreamAddedToPC ");
+
     if (evt.stream.id === that.getLabel()) {
       that.emit(StreamEvent({ type: 'added', stream: evt.stream }));
     }
   };
 
   const onStreamRemovedFromPC = (evt) => {
+    console.log("onStreamRemovedFromPC ");
     if (evt.stream.id === that.getLabel()) {
       that.emit(StreamEvent({ type: 'removed', stream: that }));
     }
   };
 
   const onICEConnectionStateChange = (msg) => {
+    console.log("onICEConnectionStateChange ",msg);
     that.emit(StreamEvent({ type: 'icestatechanged', msg }));
   };
 
@@ -82,6 +86,8 @@ const Stream = (altConnectionHelpers, specInput) => {
     if (that.stream && that.stream.id) {
       return that.stream.id;
     }
+    console.log("getLabel ",spec.label);
+
     return spec.label;
   };
 

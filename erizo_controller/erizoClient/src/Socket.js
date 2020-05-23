@@ -17,7 +17,9 @@ const SocketEvent = (type, specInput) => {
  */
 const Socket = (newIo) => {
   const that = EventDispatcher();
-  const defaultCallback = () => {};
+  const defaultCallback = () => {
+    console.log("zhangbin defaultCallback");
+  };
   const messageBuffer = [];
 
   that.CONNECTED = Symbol('connected');
@@ -58,6 +60,7 @@ const Socket = (newIo) => {
     };
     const transport = token.secure ? 'wss://' : 'ws://';
     const host = token.host;
+    console.log("zhangbin Socket.js conect with options");
     socket = that.IO.connect(transport + host, options);
 
     // Hack to know the exact reason of the WS closure (socket.io does not publish it)
@@ -144,6 +147,7 @@ const Socket = (newIo) => {
     // First message with the token
     const message = userOptions;
     message.token = token;
+    console.log("zhangbin Socket.js sendMessage with token ",token);
     that.sendMessage('token', message, (response) => {
       that.state = that.CONNECTED;
       that.id = response.clientId;
@@ -179,6 +183,8 @@ const Socket = (newIo) => {
 
   // It sends a SDP message to the server using socket.io
   that.sendSDP = (type, options, sdp, callback = defaultCallback) => {
+    console.log("[Socket.js] sendSDP ",options," sdp ",sdp);
+
     if (that.state === that.DISCONNECTED) {
       Logger.error('Trying to send a message over a disconnected Socket');
       return;

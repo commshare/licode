@@ -1,0 +1,1429 @@
+[==========] Running 576 tests from 50 test cases.
+[----------] Global test environment set-up.
+[----------] 1 test from DtlsSocketTest
+[ RUN      ] DtlsSocketTest.create_1000_DtlsClient
+[       OK ] DtlsSocketTest.create_1000_DtlsClient (57 ms)
+[----------] 1 test from DtlsSocketTest (57 ms total)
+
+[----------] 4 tests from LibNiceConnectionStartTest
+[ RUN      ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Default_Config
+[       OK ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Default_Config (8 ms)
+[ RUN      ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Remote_Credentials
+[       OK ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Remote_Credentials (1 ms)
+[ RUN      ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Port_Range
+[       OK ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Port_Range (1 ms)
+[ RUN      ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Turn
+[       OK ] LibNiceConnectionStartTest.start_Configures_Libnice_With_Turn (1 ms)
+[----------] 4 tests from LibNiceConnectionStartTest (11 ms total)
+
+[----------] 10 tests from LibNiceConnectionTest
+[ RUN      ] LibNiceConnectionTest.setRemoteCandidates_Success_WhenCalled
+[       OK ] LibNiceConnectionTest.setRemoteCandidates_Success_WhenCalled (1 ms)
+[ RUN      ] LibNiceConnectionTest.queuePacket_QueuedPackets_Can_Be_getPacket_When_Ready
+[       OK ] LibNiceConnectionTest.queuePacket_QueuedPackets_Can_Be_getPacket_When_Ready (0 ms)
+[ RUN      ] LibNiceConnectionTest.sendData_Succeed_When_Ice_Ready
+[       OK ] LibNiceConnectionTest.sendData_Succeed_When_Ice_Ready (1 ms)
+[ RUN      ] LibNiceConnectionTest.sendData_Fail_When_Ice_Not_Ready
+[       OK ] LibNiceConnectionTest.sendData_Fail_When_Ice_Not_Ready (1 ms)
+[ RUN      ] LibNiceConnectionTest.gatheringDone_Triggers_updateIceState
+[       OK ] LibNiceConnectionTest.gatheringDone_Triggers_updateIceState (0 ms)
+[ RUN      ] LibNiceConnectionTest.getSelectedPair_Calls_Libnice_And_Returns_Pair
+[       OK ] LibNiceConnectionTest.getSelectedPair_Calls_Libnice_And_Returns_Pair (1 ms)
+[ RUN      ] LibNiceConnectionTest.getCandidate_Passes_Candidate_to_Listener
+[       OK ] LibNiceConnectionTest.getCandidate_Passes_Candidate_to_Listener (0 ms)
+[ RUN      ] LibNiceConnectionTest.setRemoteCredentials_Configures_NiceAgent
+[       OK ] LibNiceConnectionTest.setRemoteCredentials_Configures_NiceAgent (1 ms)
+[ RUN      ] LibNiceConnectionTest.updateComponentState_Listener_Is_Notified_Ready_When_Single_Component_Is_Ready
+[       OK ] LibNiceConnectionTest.updateComponentState_Listener_Is_Notified_Ready_When_Single_Component_Is_Ready (0 ms)
+[ RUN      ] LibNiceConnectionTest.updateComponentState_Listener_Is_Not_Notified_If_Backwards_Transition
+[       OK ] LibNiceConnectionTest.updateComponentState_Listener_Is_Not_Notified_If_Backwards_Transition (1 ms)
+[----------] 10 tests from LibNiceConnectionTest (6 ms total)
+
+[----------] 2 tests from LibNiceConnectionTwoComponentsTest
+[ RUN      ] LibNiceConnectionTwoComponentsTest.updateComponentState_LibNiceConnection_Is_Not_Ready_When_Single_Component_Is_Ready
+[       OK ] LibNiceConnectionTwoComponentsTest.updateComponentState_LibNiceConnection_Is_Not_Ready_When_Single_Component_Is_Ready (0 ms)
+[ RUN      ] LibNiceConnectionTwoComponentsTest.updateComponentState_LibNiceConnection_Is_Ready_When_Both_Components_Are_Ready
+[       OK ] LibNiceConnectionTwoComponentsTest.updateComponentState_LibNiceConnection_Is_Ready_When_Both_Components_Are_Ready (1 ms)
+[----------] 2 tests from LibNiceConnectionTwoComponentsTest (1 ms total)
+
+[----------] 4 tests from NicerConnectionStartTest
+[ RUN      ] NicerConnectionStartTest.start_Configures_Libnice_With_Default_Config
+[       OK ] NicerConnectionStartTest.start_Configures_Libnice_With_Default_Config (23 ms)
+[ RUN      ] NicerConnectionStartTest.start_Configures_Libnice_With_Remote_Credentials
+[       OK ] NicerConnectionStartTest.start_Configures_Libnice_With_Remote_Credentials (37 ms)
+[ RUN      ] NicerConnectionStartTest.start_Configures_Nicer_With_Turn
+[       OK ] NicerConnectionStartTest.start_Configures_Nicer_With_Turn (21 ms)
+[ RUN      ] NicerConnectionStartTest.start_Configures_Nicer_With_Stun
+[       OK ] NicerConnectionStartTest.start_Configures_Nicer_With_Stun (25 ms)
+[----------] 4 tests from NicerConnectionStartTest (106 ms total)
+
+[----------] 7 tests from NicerConnectionTest
+[ RUN      ] NicerConnectionTest.setRemoteCandidates_Success_WhenCalled
+[       OK ] NicerConnectionTest.setRemoteCandidates_Success_WhenCalled (47 ms)
+[ RUN      ] NicerConnectionTest.queuePacket_QueuedPackets_Can_Be_getPacket_When_Ready
+[       OK ] NicerConnectionTest.queuePacket_QueuedPackets_Can_Be_getPacket_When_Ready (24 ms)
+[ RUN      ] NicerConnectionTest.sendData_Succeed_When_Ice_Ready
+[       OK ] NicerConnectionTest.sendData_Succeed_When_Ice_Ready (25 ms)
+[ RUN      ] NicerConnectionTest.sendData_Fail_When_Ice_Not_Ready
+[       OK ] NicerConnectionTest.sendData_Fail_When_Ice_Not_Ready (22 ms)
+[ RUN      ] NicerConnectionTest.gatheringDone_Triggers_updateIceState
+[       OK ] NicerConnectionTest.gatheringDone_Triggers_updateIceState (25 ms)
+[ RUN      ] NicerConnectionTest.getSelectedPair_Calls_Nicer_And_Returns_Pair
+[       OK ] NicerConnectionTest.getSelectedPair_Calls_Nicer_And_Returns_Pair (37 ms)
+[ RUN      ] NicerConnectionTest.setRemoteCredentials_Configures_NicerCandidate
+[       OK ] NicerConnectionTest.setRemoteCredentials_Configures_NicerCandidate (40 ms)
+[----------] 7 tests from NicerConnectionTest (220 ms total)
+
+[----------] 7 tests from OneToManyProcessorTest
+[ RUN      ] OneToManyProcessorTest.setPublisher_Success_WhenCalled
+[       OK ] OneToManyProcessorTest.setPublisher_Success_WhenCalled (0 ms)
+[ RUN      ] OneToManyProcessorTest.addSubscriber_Success_WhenAddingNewSubscribers
+[       OK ] OneToManyProcessorTest.addSubscriber_Success_WhenAddingNewSubscribers (0 ms)
+[ RUN      ] OneToManyProcessorTest.removeSubscriber_RemovesSubscribers_WhenSubscribersExist
+[       OK ] OneToManyProcessorTest.removeSubscriber_RemovesSubscribers_WhenSubscribersExist (1 ms)
+[ RUN      ] OneToManyProcessorTest.addSubscriber_Substitutes_WhenRepeated
+[       OK ] OneToManyProcessorTest.addSubscriber_Substitutes_WhenRepeated (0 ms)
+[ RUN      ] OneToManyProcessorTest.deliverFeedback_CallsPublisher_WhenCalled
+[       OK ] OneToManyProcessorTest.deliverFeedback_CallsPublisher_WhenCalled (0 ms)
+[ RUN      ] OneToManyProcessorTest.deliverVideoData_CallsSubscriber_whenCalled
+[       OK ] OneToManyProcessorTest.deliverVideoData_CallsSubscriber_whenCalled (0 ms)
+[ RUN      ] OneToManyProcessorTest.deliverAudioData_CallsSubscriber_whenCalled
+[       OK ] OneToManyProcessorTest.deliverAudioData_CallsSubscriber_whenCalled (0 ms)
+[----------] 7 tests from OneToManyProcessorTest (1 ms total)
+
+[----------] 10 tests from erizoPacket
+[ RUN      ] erizoPacket.rtpPacketQueueDefaults
+[       OK ] erizoPacket.rtpPacketQueueDefaults (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueBasicBehavior
+[       OK ] erizoPacket.rtpPacketQueueBasicBehavior (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueCorrectlyReordersSamples
+[       OK ] erizoPacket.rtpPacketQueueCorrectlyReordersSamples (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueCorrectlyHandlesSequenceNumberRollover
+[       OK ] erizoPacket.rtpPacketQueueCorrectlyHandlesSequenceNumberRollover (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueCorrectlyHandlesSequenceNumberRolloverBackwards
+[       OK ] erizoPacket.rtpPacketQueueCorrectlyHandlesSequenceNumberRolloverBackwards (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueDoesNotPushSampleLessThanWhatHasBeenPopped
+[       OK ] erizoPacket.rtpPacketQueueDoesNotPushSampleLessThanWhatHasBeenPopped (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueMakesDataAvailableOnceEnoughSamplesPushed
+[       OK ] erizoPacket.rtpPacketQueueMakesDataAvailableOnceEnoughSamplesPushed (0 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueRespectsMax
+[       OK ] erizoPacket.rtpPacketQueueRespectsMax (1 ms)
+[ RUN      ] erizoPacket.rtpPacketQueueRejectsDuplicatePackets
+[       OK ] erizoPacket.rtpPacketQueueRejectsDuplicatePackets (0 ms)
+[ RUN      ] erizoPacket.depthCalculationHandlesTimestampWrap
+[       OK ] erizoPacket.depthCalculationHandlesTimestampWrap (0 ms)
+[----------] 10 tests from erizoPacket (1 ms total)
+
+[----------] 3 tests from SdpInfoTest
+[ RUN      ] SdpInfoTest.shouldParseIceCredentials_Chrome
+[       OK ] SdpInfoTest.shouldParseIceCredentials_Chrome (2 ms)
+[ RUN      ] SdpInfoTest.shouldParseIceCredentials_Firefox
+[       OK ] SdpInfoTest.shouldParseIceCredentials_Firefox (0 ms)
+[ RUN      ] SdpInfoTest.shouldParseIceCredentials_OpenWebRTC
+[       OK ] SdpInfoTest.shouldParseIceCredentials_OpenWebRTC (1 ms)
+[----------] 3 tests from SdpInfoTest (3 ms total)
+
+[----------] 6 tests from SdpInfoMediaTest
+[ RUN      ] SdpInfoMediaTest.shouldDiscardNotSupportedCodecs
+[       OK ] SdpInfoMediaTest.shouldDiscardNotSupportedCodecs (1 ms)
+[ RUN      ] SdpInfoMediaTest.shouldStoreSupportedCodecs
+[       OK ] SdpInfoMediaTest.shouldStoreSupportedCodecs (1 ms)
+[ RUN      ] SdpInfoMediaTest.shouldStoreSupportedFeedback
+[       OK ] SdpInfoMediaTest.shouldStoreSupportedFeedback (1 ms)
+[ RUN      ] SdpInfoMediaTest.shouldStoreSupportedFmtp
+[       OK ] SdpInfoMediaTest.shouldStoreSupportedFmtp (0 ms)
+[ RUN      ] SdpInfoMediaTest.shouldBuildPTMatrix
+[       OK ] SdpInfoMediaTest.shouldBuildPTMatrix (0 ms)
+[ RUN      ] SdpInfoMediaTest.shouldOnlyMapRtxCorrespondingToSupportedCodecs
+[       OK ] SdpInfoMediaTest.shouldOnlyMapRtxCorrespondingToSupportedCodecs (1 ms)
+[----------] 6 tests from SdpInfoMediaTest (5 ms total)
+
+[----------] 1 test from MultipleTargetVideoBWDistributorTest
+[ RUN      ] MultipleTargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist
+[       OK ] MultipleTargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist (90 ms)
+[----------] 1 test from MultipleTargetVideoBWDistributorTest (90 ms total)
+
+[----------] 7 tests from TokenBucketTest
+[ RUN      ] TokenBucketTest.shouldConsumeTokens_whenRateIsNotReached
+[       OK ] TokenBucketTest.shouldConsumeTokens_whenRateIsNotReached (275 ms)
+[ RUN      ] TokenBucketTest.shouldNotConsumeTokens_whenRateIsReached
+[       OK ] TokenBucketTest.shouldNotConsumeTokens_whenRateIsReached (0 ms)
+[ RUN      ] TokenBucketTest.shouldConsume_whenReceivingBurst
+[       OK ] TokenBucketTest.shouldConsume_whenReceivingBurst (0 ms)
+[ RUN      ] TokenBucketTest.shouldConsumeAfterHavingReceivedBurst
+[       OK ] TokenBucketTest.shouldConsumeAfterHavingReceivedBurst (0 ms)
+[ RUN      ] TokenBucketTest.shouldAdaptToRateAgainAfterBursts
+[       OK ] TokenBucketTest.shouldAdaptToRateAgainAfterBursts (92 ms)
+[ RUN      ] TokenBucketTest.shouldNotConsumeMultipleBursts_whenRateIsReached
+[       OK ] TokenBucketTest.shouldNotConsumeMultipleBursts_whenRateIsReached (92 ms)
+[ RUN      ] TokenBucketTest.shouldConsumeMultipleBursts_whenRateIsNotReached
+[       OK ] TokenBucketTest.shouldConsumeMultipleBursts_whenRateIsNotReached (0 ms)
+[----------] 7 tests from TokenBucketTest (460 ms total)
+
+[----------] 5 tests from DepacketizerVp8Test
+[ RUN      ] DepacketizerVp8Test.isReallyEmpty
+[       OK ] DepacketizerVp8Test.isReallyEmpty (11 ms)
+[ RUN      ] DepacketizerVp8Test.shouldDepacketSimplePacketFrame
+[       OK ] DepacketizerVp8Test.shouldDepacketSimplePacketFrame (13 ms)
+[ RUN      ] DepacketizerVp8Test.shouldDepacketSimplePacketKeyframe
+[       OK ] DepacketizerVp8Test.shouldDepacketSimplePacketKeyframe (12 ms)
+[ RUN      ] DepacketizerVp8Test.shouldDepacketMultiPacketFrame
+[       OK ] DepacketizerVp8Test.shouldDepacketMultiPacketFrame (12 ms)
+[ RUN      ] DepacketizerVp8Test.shouldReset
+[       OK ] DepacketizerVp8Test.shouldReset (12 ms)
+[----------] 5 tests from DepacketizerVp8Test (61 ms total)
+
+[----------] 6 tests from DepacketizerH264Test
+[ RUN      ] DepacketizerH264Test.isReallyEmpty
+[       OK ] DepacketizerH264Test.isReallyEmpty (13 ms)
+[ RUN      ] DepacketizerH264Test.shouldDepacketSingleNalFrame
+[       OK ] DepacketizerH264Test.shouldDepacketSingleNalFrame (11 ms)
+[ RUN      ] DepacketizerH264Test.shouldDepacketSingleNalKeyframe
+[       OK ] DepacketizerH264Test.shouldDepacketSingleNalKeyframe (13 ms)
+[ RUN      ] DepacketizerH264Test.shouldDepacketAggregatedFrame
+[       OK ] DepacketizerH264Test.shouldDepacketAggregatedFrame (11 ms)
+[ RUN      ] DepacketizerH264Test.shouldDepacketFragmentedFrame
+[       OK ] DepacketizerH264Test.shouldDepacketFragmentedFrame (13 ms)
+[ RUN      ] DepacketizerH264Test.shouldReset
+[       OK ] DepacketizerH264Test.shouldReset (11 ms)
+[----------] 6 tests from DepacketizerH264Test (73 ms total)
+
+[----------] 15 tests from SyntheticInputTest
+[ RUN      ] SyntheticInputTest.shouldWriteAudioPackets_whenExpected
+[       OK ] SyntheticInputTest.shouldWriteAudioPackets_whenExpected (1 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteVideoPackets_whenExpected
+[       OK ] SyntheticInputTest.shouldWriteVideoPackets_whenExpected (1 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteMultiplePackets_after1Secong
+[       OK ] SyntheticInputTest.shouldWriteMultiplePackets_after1Secong (2 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteAudioFrames_WithExpectedPT
+[       OK ] SyntheticInputTest.shouldWriteAudioFrames_WithExpectedPT (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteVideoFrames_WithExpectedPT
+[       OK ] SyntheticInputTest.shouldWriteVideoFrames_WithExpectedPT (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteAudioFrames_WithExpectedSsrc
+[       OK ] SyntheticInputTest.shouldWriteAudioFrames_WithExpectedSsrc (1 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteVideoFrames_WithExpectedSsrc
+[       OK ] SyntheticInputTest.shouldWriteVideoFrames_WithExpectedSsrc (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteAudioFrames_WithIncreasingSequenceNumbers
+[       OK ] SyntheticInputTest.shouldWriteAudioFrames_WithIncreasingSequenceNumbers (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteVideoFrames_WithIncreasingSequenceNumbers
+[       OK ] SyntheticInputTest.shouldWriteVideoFrames_WithIncreasingSequenceNumbers (1 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteAudioFrames_WithIncreasingTimestamps
+[       OK ] SyntheticInputTest.shouldWriteAudioFrames_WithIncreasingTimestamps (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteVideoFrames_WithIncreasingTimestamps
+[       OK ] SyntheticInputTest.shouldWriteVideoFrames_WithIncreasingTimestamps (1 ms)
+[ RUN      ] SyntheticInputTest.firstVideoFrame_shouldBeAKeyframe
+[       OK ] SyntheticInputTest.firstVideoFrame_shouldBeAKeyframe (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteFragmentedKeyFrames_whenExpected
+[       OK ] SyntheticInputTest.shouldWriteFragmentedKeyFrames_whenExpected (1 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteKeyFrames_whenPliIsReceived
+[       OK ] SyntheticInputTest.shouldWriteKeyFrames_whenPliIsReceived (0 ms)
+[ RUN      ] SyntheticInputTest.shouldWriteKeyFrames_whenRequestedByControl
+[       OK ] SyntheticInputTest.shouldWriteKeyFrames_whenRequestedByControl (0 ms)
+[----------] 15 tests from SyntheticInputTest (8 ms total)
+
+[----------] 4 tests from BandwidthEstimationHandlerTest
+[ RUN      ] BandwidthEstimationHandlerTest.basicBehaviourShouldWritePackets
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: getMaxVideoBW()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+
+GMOCK WARNING:
+Uninteresting mock function call - returning directly.
+    Function call: SetMinBitrate(10)
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] BandwidthEstimationHandlerTest.basicBehaviourShouldWritePackets (14 ms)
+[ RUN      ] BandwidthEstimationHandlerTest.basicBehaviourShouldReadPackets
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: getMaxVideoBW()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+
+GMOCK WARNING:
+Uninteresting mock function call - returning directly.
+    Function call: SetMinBitrate(10)
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] BandwidthEstimationHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] BandwidthEstimationHandlerTest.shouldSendRembPacketWithEstimatedBitrate
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: getMaxVideoBW()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+
+GMOCK WARNING:
+Uninteresting mock function call - returning directly.
+    Function call: SetMinBitrate(10)
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] BandwidthEstimationHandlerTest.shouldSendRembPacketWithEstimatedBitrate (10 ms)
+[ RUN      ] BandwidthEstimationHandlerTest.shouldSendRembPacketWithCappedBitrate
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: getMaxVideoBW()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+
+GMOCK WARNING:
+Uninteresting mock function call - returning directly.
+    Function call: SetMinBitrate(10)
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] BandwidthEstimationHandlerTest.shouldSendRembPacketWithCappedBitrate (13 ms)
+[----------] 4 tests from BandwidthEstimationHandlerTest (48 ms total)
+
+[----------] 10 tests from FakeKeyframeGeneratorHandlerTest
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] FakeKeyframeGeneratorHandlerTest.basicBehaviourShouldReadPackets (10 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] FakeKeyframeGeneratorHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldNotChangePacketsWhenDisabled
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldNotChangePacketsWhenDisabled (13 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldTransformVP8Packet
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldTransformVP8Packet (11 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldNotTransformVP8Keyframes
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldNotTransformVP8Keyframes (14 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldNotTransformUnsupportedCodecPackets
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldNotTransformUnsupportedCodecPackets (11 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldSendPLIInmediatelyIfNoKeyframeIsReceived
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldSendPLIInmediatelyIfNoKeyframeIsReceived (13 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldNotSendPLIIfKeyframeIsFirstPacket
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldNotSendPLIIfKeyframeIsFirstPacket (11 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldSendPLIsPeriodically
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldSendPLIsPeriodically (12 ms)
+[ RUN      ] FakeKeyframeGeneratorHandlerTest.shouldNotSendPeriodicPLISIfKeyframeIsReceived
+[       OK ] FakeKeyframeGeneratorHandlerTest.shouldNotSendPeriodicPLISIfKeyframeIsReceived (12 ms)
+[----------] 10 tests from FakeKeyframeGeneratorHandlerTest (121 ms total)
+
+[----------] 4 tests from FecReceiverHandlerTest
+[ RUN      ] FecReceiverHandlerTest.basicBehaviourShouldWritePackets
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] FecReceiverHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[ RUN      ] FecReceiverHandlerTest.shouldNotCallFecReceiverWhenReceivingREDpacketsAndDisabled
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] FecReceiverHandlerTest.shouldNotCallFecReceiverWhenReceivingREDpacketsAndDisabled (11 ms)
+[ RUN      ] FecReceiverHandlerTest.shouldCallFecReceiverWhenReceivingREDpacketsAndEnabled
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] FecReceiverHandlerTest.shouldCallFecReceiverWhenReceivingREDpacketsAndEnabled (12 ms)
+[ RUN      ] FecReceiverHandlerTest.shouldWritePacketsWhenCalledFromFecReceiver
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] FecReceiverHandlerTest.shouldWritePacketsWhenCalledFromFecReceiver (12 ms)
+[----------] 4 tests from FecReceiverHandlerTest (49 ms total)
+
+[----------] 1 test from LayerBitrateCalculationHandlerTest
+[ RUN      ] LayerBitrateCalculationHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] LayerBitrateCalculationHandlerTest.basicBehaviourShouldWritePackets (12 ms)
+[----------] 1 test from LayerBitrateCalculationHandlerTest (12 ms total)
+
+[----------] 8 tests from PeriodicPliHandlerTest
+[ RUN      ] PeriodicPliHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] PeriodicPliHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] PeriodicPliHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] PeriodicPliHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldSendPliEveryInterval
+[       OK ] PeriodicPliHandlerTest.shouldSendPliEveryInterval (11 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldNotSendPliIfDeactivated
+[       OK ] PeriodicPliHandlerTest.shouldNotSendPliIfDeactivated (11 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldUpdateIntervalIfRequested
+[       OK ] PeriodicPliHandlerTest.shouldUpdateIntervalIfRequested (13 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldNotSendPliIfMoreThanOneKeyframeIsReceivedInPeriod
+[       OK ] PeriodicPliHandlerTest.shouldNotSendPliIfMoreThanOneKeyframeIsReceivedInPeriod (11 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldSendPliWhenRequestedToStop
+[       OK ] PeriodicPliHandlerTest.shouldSendPliWhenRequestedToStop (13 ms)
+[ RUN      ] PeriodicPliHandlerTest.shouldNotSchedulePlisWhenDisabled
+[       OK ] PeriodicPliHandlerTest.shouldNotSchedulePlisWhenDisabled (14 ms)
+[----------] 8 tests from PeriodicPliHandlerTest (98 ms total)
+
+[----------] 7 tests from PliPacerHandlerTest
+[ RUN      ] PliPacerHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] PliPacerHandlerTest.basicBehaviourShouldReadPackets (12 ms)
+[ RUN      ] PliPacerHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] PliPacerHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] PliPacerHandlerTest.shouldSendASinglePLIWhenReceivingSeveralInAShortPeriod
+[       OK ] PliPacerHandlerTest.shouldSendASinglePLIWhenReceivingSeveralInAShortPeriod (12 ms)
+[ RUN      ] PliPacerHandlerTest.shouldResetPeriodWhenKeyframeIsReceived
+[       OK ] PliPacerHandlerTest.shouldResetPeriodWhenKeyframeIsReceived (11 ms)
+[ RUN      ] PliPacerHandlerTest.shouldSendMultiplePLIsWhenPeriodIsExpiredWithNoKeyframes
+[       OK ] PliPacerHandlerTest.shouldSendMultiplePLIsWhenPeriodIsExpiredWithNoKeyframes (14 ms)
+[ RUN      ] PliPacerHandlerTest.shouldNotSendMultiplePLIsWhenDisabled
+[       OK ] PliPacerHandlerTest.shouldNotSendMultiplePLIsWhenDisabled (12 ms)
+[ RUN      ] PliPacerHandlerTest.shouldSendFIRWhenKeyframesAreNotReceivedInALongPeriod
+[       OK ] PliPacerHandlerTest.shouldSendFIRWhenKeyframesAreNotReceivedInALongPeriod (14 ms)
+[----------] 7 tests from PliPacerHandlerTest (86 ms total)
+
+[----------] 7 tests from PliPriorityHandlerTest
+[ RUN      ] PliPriorityHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] PliPriorityHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] PliPriorityHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] PliPriorityHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] PliPriorityHandlerTest.shouldSendTheFirstPLIInmediately
+[       OK ] PliPriorityHandlerTest.shouldSendTheFirstPLIInmediately (13 ms)
+[ RUN      ] PliPriorityHandlerTest.shouldSendASinglePLIWhenReceivingSeveralInAShortPeriod
+[       OK ] PliPriorityHandlerTest.shouldSendASinglePLIWhenReceivingSeveralInAShortPeriod (11 ms)
+[ RUN      ] PliPriorityHandlerTest.shouldNotSendIfKeyframeIsReceivedInPeriod
+[       OK ] PliPriorityHandlerTest.shouldNotSendIfKeyframeIsReceivedInPeriod (11 ms)
+[ RUN      ] PliPriorityHandlerTest.shouldNotStopHighPriorityPlis
+[       OK ] PliPriorityHandlerTest.shouldNotStopHighPriorityPlis (12 ms)
+[ RUN      ] PliPriorityHandlerTest.shouldAlwaysSendPLIsWhenDisabled
+[       OK ] PliPriorityHandlerTest.shouldAlwaysSendPLIsWhenDisabled (13 ms)
+[----------] 7 tests from PliPriorityHandlerTest (83 ms total)
+
+[----------] 9 tests from QualityManagerTest
+[ RUN      ] QualityManagerTest.shouldStartAtBaseLayer
+[       OK ] QualityManagerTest.shouldStartAtBaseLayer (11 ms)
+[ RUN      ] QualityManagerTest.shouldChangeToHighestLayerBelowEstimatedBitrate
+[       OK ] QualityManagerTest.shouldChangeToHighestLayerBelowEstimatedBitrate (13 ms)
+[ RUN      ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenEstimatedBitrateIsLowerThanCurrentLayer
+[       OK ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenEstimatedBitrateIsLowerThanCurrentLayer (13 ms)
+[ RUN      ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenCurrentLayerRaisesOverEstimate
+[       OK ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenCurrentLayerRaisesOverEstimate (13 ms)
+[ RUN      ] QualityManagerTest.shouldNotGoToHigherLayerInEarlierThanInterval
+[       OK ] QualityManagerTest.shouldNotGoToHigherLayerInEarlierThanInterval (11 ms)
+[ RUN      ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenLayerIsGone
+[       OK ] QualityManagerTest.shouldSwitchLayerImmediatelyWhenLayerIsGone (14 ms)
+[ RUN      ] QualityManagerTest.shouldStickToForcedLayer
+[       OK ] QualityManagerTest.shouldStickToForcedLayer (11 ms)
+[ RUN      ] QualityManagerTest.shouldNotGoBelowMinDesiredSpatialLayerIfAvailable
+[       OK ] QualityManagerTest.shouldNotGoBelowMinDesiredSpatialLayerIfAvailable (13 ms)
+[ RUN      ] QualityManagerTest.shouldGoBelowMinDesiredSpatialLayerIfNotAvailable
+[       OK ] QualityManagerTest.shouldGoBelowMinDesiredSpatialLayerIfNotAvailable (11 ms)
+[----------] 9 tests from QualityManagerTest (111 ms total)
+
+[----------] 2 tests from RtcpFeedbackRrGenerationTest
+[ RUN      ] RtcpFeedbackRrGenerationTest.basicBehaviourShouldReadPackets
+[       OK ] RtcpFeedbackRrGenerationTest.basicBehaviourShouldReadPackets (13 ms)
+[ RUN      ] RtcpFeedbackRrGenerationTest.basicBehaviourShouldWritePackets
+[       OK ] RtcpFeedbackRrGenerationTest.basicBehaviourShouldWritePackets (13 ms)
+[----------] 2 tests from RtcpFeedbackRrGenerationTest (26 ms total)
+
+[----------] 9 tests from RtcpNackGeneratorTest
+[ RUN      ] RtcpNackGeneratorTest.shouldNotGenerateNackForConsecutivePackets
+[       OK ] RtcpNackGeneratorTest.shouldNotGenerateNackForConsecutivePackets (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldNotGenerateNackForConsecutivePacketsWithRollOver
+[       OK ] RtcpNackGeneratorTest.shouldNotGenerateNackForConsecutivePacketsWithRollOver (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldGenerateNackOnLostPacket
+[       OK ] RtcpNackGeneratorTest.shouldGenerateNackOnLostPacket (1 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldGenerateNackOnLostPacketWithRollOver
+[       OK ] RtcpNackGeneratorTest.shouldGenerateNackOnLostPacketWithRollOver (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.nackShouldContainLostPackets
+[       OK ] RtcpNackGeneratorTest.nackShouldContainLostPackets (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.nackShouldContainLostPacketsInMoreThanOneBlock
+[       OK ] RtcpNackGeneratorTest.nackShouldContainLostPacketsInMoreThanOneBlock (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldNotRetransmitNacksInmediately
+[       OK ] RtcpNackGeneratorTest.shouldNotRetransmitNacksInmediately (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldRetransmitNacksAfterTime
+[       OK ] RtcpNackGeneratorTest.shouldRetransmitNacksAfterTime (0 ms)
+[ RUN      ] RtcpNackGeneratorTest.shouldNotRetransmitNacksMoreThanTwice
+[       OK ] RtcpNackGeneratorTest.shouldNotRetransmitNacksMoreThanTwice (0 ms)
+[----------] 9 tests from RtcpNackGeneratorTest (1 ms total)
+
+[----------] 6 tests from RtcpProcessorHandlerTest
+[ RUN      ] RtcpProcessorHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] RtcpProcessorHandlerTest.basicBehaviourShouldReadPackets (12 ms)
+[ RUN      ] RtcpProcessorHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] RtcpProcessorHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] RtcpProcessorHandlerTest.shouldWriteRTCPIfProcessorAcceptsIt
+[       OK ] RtcpProcessorHandlerTest.shouldWriteRTCPIfProcessorAcceptsIt (13 ms)
+[ RUN      ] RtcpProcessorHandlerTest.shouldNotWriteRTCPIfProcessorRejectsIt
+[       OK ] RtcpProcessorHandlerTest.shouldNotWriteRTCPIfProcessorRejectsIt (13 ms)
+[ RUN      ] RtcpProcessorHandlerTest.shouldCallAnalyzeSrWhenReceivingSenderReports
+[       OK ] RtcpProcessorHandlerTest.shouldCallAnalyzeSrWhenReceivingSenderReports (12 ms)
+[ RUN      ] RtcpProcessorHandlerTest.shouldCallSetPublisherBWWhenBitrateIsCalculated
+[       OK ] RtcpProcessorHandlerTest.shouldCallSetPublisherBWWhenBitrateIsCalculated (12 ms)
+[----------] 6 tests from RtcpProcessorHandlerTest (73 ms total)
+
+[----------] 5 tests from RtcpRrGeneratorTest
+[ RUN      ] RtcpRrGeneratorTest.shouldReportPacketLoss
+[       OK ] RtcpRrGeneratorTest.shouldReportPacketLoss (0 ms)
+[ RUN      ] RtcpRrGeneratorTest.shouldReportFractionLost
+[       OK ] RtcpRrGeneratorTest.shouldReportFractionLost (0 ms)
+[ RUN      ] RtcpRrGeneratorTest.shouldReportHighestSeqnum
+[       OK ] RtcpRrGeneratorTest.shouldReportHighestSeqnum (0 ms)
+[ RUN      ] RtcpRrGeneratorTest.shouldReportHighestSeqnumWithRollover
+[       OK ] RtcpRrGeneratorTest.shouldReportHighestSeqnumWithRollover (0 ms)
+[ RUN      ] RtcpRrGeneratorTest.shouldReportDelaySinceLastSr
+[       OK ] RtcpRrGeneratorTest.shouldReportDelaySinceLastSr (0 ms)
+[----------] 5 tests from RtcpRrGeneratorTest (0 ms total)
+
+[----------] 3 tests from RtpExtensionProcessorTest
+[ RUN      ] RtpExtensionProcessorTest.extensionShouldBeValidWhenItIsPassed
+[       OK ] RtpExtensionProcessorTest.extensionShouldBeValidWhenItIsPassed (0 ms)
+[ RUN      ] RtpExtensionProcessorTest.extensionShouldBeInvalidWhenItIsNotPassed
+[       OK ] RtpExtensionProcessorTest.extensionShouldBeInvalidWhenItIsNotPassed (0 ms)
+[ RUN      ] RtpExtensionProcessorTest.extensionShouldBeInvalidWhenWeDoNotKnowIt
+[       OK ] RtpExtensionProcessorTest.extensionShouldBeInvalidWhenWeDoNotKnowIt (0 ms)
+[----------] 3 tests from RtpExtensionProcessorTest (0 ms total)
+
+[----------] 5 tests from RtpPaddingGeneratorHandlerTest
+[ RUN      ] RtpPaddingGeneratorHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] RtpPaddingGeneratorHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] RtpPaddingGeneratorHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] RtpPaddingGeneratorHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[ RUN      ] RtpPaddingGeneratorHandlerTest.shouldSendPaddingWhenEnabled
+[       OK ] RtpPaddingGeneratorHandlerTest.shouldSendPaddingWhenEnabled (11 ms)
+[ RUN      ] RtpPaddingGeneratorHandlerTest.shouldNotSendPaddingWhenDisabled
+[       OK ] RtpPaddingGeneratorHandlerTest.shouldNotSendPaddingWhenDisabled (13 ms)
+[ RUN      ] RtpPaddingGeneratorHandlerTest.shouldNotSendPaddingAfterNotMarkers
+[       OK ] RtpPaddingGeneratorHandlerTest.shouldNotSendPaddingAfterNotMarkers (11 ms)
+[----------] 5 tests from RtpPaddingGeneratorHandlerTest (60 ms total)
+
+[----------] 3 tests from RtpPaddingManagerHandlerTest
+[ RUN      ] RtpPaddingManagerHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] RtpPaddingManagerHandlerTest.basicBehaviourShouldReadPackets (13 ms)
+[ RUN      ] RtpPaddingManagerHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] RtpPaddingManagerHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] RtpPaddingManagerHandlerTest.shouldDistributePaddingEvenlyAmongStreamsWithoutPublishers
+[       OK ] RtpPaddingManagerHandlerTest.shouldDistributePaddingEvenlyAmongStreamsWithoutPublishers (14 ms)
+[----------] 3 tests from RtpPaddingManagerHandlerTest (38 ms total)
+
+[----------] 8 tests from RtpRetransmissionHandlerTest
+[ RUN      ] RtpRetransmissionHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] RtpRetransmissionHandlerTest.basicBehaviourShouldReadPackets (10 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] RtpRetransmissionHandlerTest.basicBehaviourShouldWritePackets (12 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingNacksWithGoodSeqNum
+[       OK ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingNacksWithGoodSeqNum (11 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldNotRetransmitPackets_whenReceivingNacksWithBadSeqNum
+[       OK ] RtpRetransmissionHandlerTest.shouldNotRetransmitPackets_whenReceivingNacksWithBadSeqNum (13 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldNotRetransmitPackets_whenReceivingNacksFromDifferentType
+[       OK ] RtpRetransmissionHandlerTest.shouldNotRetransmitPackets_whenReceivingNacksFromDifferentType (13 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingWithSeqNumBeforeGeneralRollover
+[       OK ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingWithSeqNumBeforeGeneralRollover (11 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingWithSeqNumBeforeBufferRollover
+[       OK ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingWithSeqNumBeforeBufferRollover (12 ms)
+[ RUN      ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingNackWithMultipleSeqNums
+[       OK ] RtpRetransmissionHandlerTest.shouldRetransmitPackets_whenReceivingNackWithMultipleSeqNums (11 ms)
+[----------] 8 tests from RtpRetransmissionHandlerTest (94 ms total)
+
+[----------] 9 tests from RtpSlideShowHandlerTest
+[ RUN      ] RtpSlideShowHandlerTest.basicBehaviourShouldReadPackets
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.basicBehaviourShouldReadPackets (13 ms)
+[ RUN      ] RtpSlideShowHandlerTest.basicBehaviourShouldWritePackets
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.basicBehaviourShouldWritePackets (14 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldTransmitAllPacketsWhenInactive
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldTransmitAllPacketsWhenInactive (11 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldTransmitJustKeyframesInVP9
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldTransmitJustKeyframesInVP9 (12 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldTransmitFromBeginningOfKFrameToTimestampChange
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldTransmitFromBeginningOfKFrameToTimestampChange (11 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldIgnoreKeyframeIfIsKeyframeIsNotFirstPacket
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldIgnoreKeyframeIfIsKeyframeIsNotFirstPacket (12 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldMantainSequenceNumberInSlideShow
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldMantainSequenceNumberInSlideShow (12 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldResendKeyframesAfterKeyframeTimeout
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldResendKeyframesAfterKeyframeTimeout (12 ms)
+[ RUN      ] RtpSlideShowHandlerTest.shouldAdjustSequenceNumberAfterSlideShow
+
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: isSlideShowModeEnabled()
+          Returns: false
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#knowing-when-to-expect for details.
+[       OK ] RtpSlideShowHandlerTest.shouldAdjustSequenceNumberAfterSlideShow (12 ms)
+[----------] 9 tests from RtpSlideShowHandlerTest (111 ms total)
+
+[----------] 7 tests from RtpTrackMuteHandlerTest
+[ RUN      ] RtpTrackMuteHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] RtpTrackMuteHandlerTest.basicBehaviourShouldReadPackets (13 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] RtpTrackMuteHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.shouldNotWriteAudioPacketsIfActive
+[       OK ] RtpTrackMuteHandlerTest.shouldNotWriteAudioPacketsIfActive (13 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.shouldNotWriteVideoPacketsIfActive
+[       OK ] RtpTrackMuteHandlerTest.shouldNotWriteVideoPacketsIfActive (12 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.shouldNotWriteAnyPacketsIfAllIsActive
+[       OK ] RtpTrackMuteHandlerTest.shouldNotWriteAnyPacketsIfAllIsActive (12 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.shouldSendPLIsWhenVideoIsActivated
+[       OK ] RtpTrackMuteHandlerTest.shouldSendPLIsWhenVideoIsActivated (10 ms)
+[ RUN      ] RtpTrackMuteHandlerTest.shouldAdjustSequenceNumbers
+[       OK ] RtpTrackMuteHandlerTest.shouldAdjustSequenceNumbers (13 ms)
+[----------] 7 tests from RtpTrackMuteHandlerTest (85 ms total)
+
+[----------] 4 tests from SRPacketHandlerTest
+[ RUN      ] SRPacketHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] SRPacketHandlerTest.basicBehaviourShouldReadPackets (12 ms)
+[ RUN      ] SRPacketHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] SRPacketHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[ RUN      ] SRPacketHandlerTest.shouldRewritePacketsSent
+[       OK ] SRPacketHandlerTest.shouldRewritePacketsSent (11 ms)
+[ RUN      ] SRPacketHandlerTest.shouldRewriteOctetsSent
+[       OK ] SRPacketHandlerTest.shouldRewriteOctetsSent (13 ms)
+[----------] 4 tests from SRPacketHandlerTest (50 ms total)
+
+[----------] 5 tests from SenderBandwidthEstimationHandlerTest
+[ RUN      ] SenderBandwidthEstimationHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] SenderBandwidthEstimationHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] SenderBandwidthEstimationHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] SenderBandwidthEstimationHandlerTest.basicBehaviourShouldWritePackets (11 ms)
+[ RUN      ] SenderBandwidthEstimationHandlerTest.shouldNotProvideEstimateUntilRembIsReceived
+[       OK ] SenderBandwidthEstimationHandlerTest.shouldNotProvideEstimateUntilRembIsReceived (13 ms)
+[ RUN      ] SenderBandwidthEstimationHandlerTest.shouldProvideEstimateInmediatelyOnREMB
+[       OK ] SenderBandwidthEstimationHandlerTest.shouldProvideEstimateInmediatelyOnREMB (13 ms)
+[ RUN      ] SenderBandwidthEstimationHandlerTest.shouldProvideEstimateAfterkMinUpdateEstimateInterval
+[       OK ] SenderBandwidthEstimationHandlerTest.shouldProvideEstimateAfterkMinUpdateEstimateInterval (10 ms)
+[----------] 5 tests from SenderBandwidthEstimationHandlerTest (59 ms total)
+
+[----------] 2 tests from StatsHandlerTest
+[ RUN      ] StatsHandlerTest.basicBehaviourShouldReadPackets
+[       OK ] StatsHandlerTest.basicBehaviourShouldReadPackets (11 ms)
+[ RUN      ] StatsHandlerTest.basicBehaviourShouldWritePackets
+[       OK ] StatsHandlerTest.basicBehaviourShouldWritePackets (13 ms)
+[----------] 2 tests from StatsHandlerTest (24 ms total)
+
+[----------] 6 tests from MovingAverageStatTest
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForLessSamplesThanWindowSize
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForLessSamplesThanWindowSize (0 ms)
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForLessSamplesThanWindowSize2
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForLessSamplesThanWindowSize2 (0 ms)
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForValuesInWindow
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForValuesInWindow (0 ms)
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForValuesInWindow2
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForValuesInWindow2 (0 ms)
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForGivenNumberOfSamples
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForGivenNumberOfSamples (0 ms)
+[ RUN      ] MovingAverageStatTest.shouldCalculateAverageForGivenNumberOfSamples2
+[       OK ] MovingAverageStatTest.shouldCalculateAverageForGivenNumberOfSamples2 (0 ms)
+[----------] 6 tests from MovingAverageStatTest (0 ms total)
+
+[----------] 9 tests from MovingIntervalRateStatTest
+[ RUN      ] MovingIntervalRateStatTest.shouldCalculateAverageForLessThanWindowSize
+[       OK ] MovingIntervalRateStatTest.shouldCalculateAverageForLessThanWindowSize (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldReturnZeroIfNotEnoughTimePassed
+[       OK ] MovingIntervalRateStatTest.shouldReturnZeroIfNotEnoughTimePassed (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldReturnAverageOfWindowSize
+[       OK ] MovingIntervalRateStatTest.shouldReturnAverageOfWindowSize (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldCalculateAverageForAGivenInterval
+[       OK ] MovingIntervalRateStatTest.shouldCalculateAverageForAGivenInterval (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldIntroduceZerosInTimeGapsWhenAdding
+[       OK ] MovingIntervalRateStatTest.shouldIntroduceZerosInTimeGapsWhenAdding (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldIntroduceZerosInTimeGapsWhenCalculating
+[       OK ] MovingIntervalRateStatTest.shouldIntroduceZerosInTimeGapsWhenCalculating (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldCleanWindowIfValueIsOverWindow
+[       OK ] MovingIntervalRateStatTest.shouldCleanWindowIfValueIsOverWindow (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldReturn0IfTimeIsOutOfWindow
+[       OK ] MovingIntervalRateStatTest.shouldReturn0IfTimeIsOutOfWindow (0 ms)
+[ RUN      ] MovingIntervalRateStatTest.shouldAddTheCorrespondingPartOfTheLastInterval
+[       OK ] MovingIntervalRateStatTest.shouldAddTheCorrespondingPartOfTheLastInterval (0 ms)
+[----------] 9 tests from MovingIntervalRateStatTest (1 ms total)
+
+[----------] 7 tests from StatNodeTest
+[ RUN      ] StatNodeTest.shouldWriteAnEmptyJson
+[       OK ] StatNodeTest.shouldWriteAnEmptyJson (0 ms)
+[ RUN      ] StatNodeTest.shouldWriteAJsonWithStringStats
+[       OK ] StatNodeTest.shouldWriteAJsonWithStringStats (0 ms)
+[ RUN      ] StatNodeTest.shouldWriteAJsonWithCumulativeStats
+[       OK ] StatNodeTest.shouldWriteAJsonWithCumulativeStats (0 ms)
+[ RUN      ] StatNodeTest.shouldWriteAJsonWithUpdatedCumulativeStats
+[       OK ] StatNodeTest.shouldWriteAJsonWithUpdatedCumulativeStats (0 ms)
+[ RUN      ] StatNodeTest.shouldWriteAJsonWithRateStats
+[       OK ] StatNodeTest.shouldWriteAJsonWithRateStats (0 ms)
+[ RUN      ] StatNodeTest.rateStatsShouldReturnZeroWhenNotIncreasing
+[       OK ] StatNodeTest.rateStatsShouldReturnZeroWhenNotIncreasing (0 ms)
+[ RUN      ] StatNodeTest.IntervalRateStatCanBeInserted
+[       OK ] StatNodeTest.IntervalRateStatCanBeInserted (0 ms)
+[----------] 7 tests from StatNodeTest (0 ms total)
+
+[----------] 26 tests from REMB_values/WebRtcConnectionTest
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/0
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/0 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/1
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/1 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/2
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/2 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/3
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/3 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/4
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/4 (12 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/5
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/5 (12 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/6
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/6 (12 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/7
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/7 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/8
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/8 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/9
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/9 (14 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/10
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/10 (10 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/11
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/11 (14 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/12
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/12 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/13
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/13 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/14
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/14 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/15
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/15 (14 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/16
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/16 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/17
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/17 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/18
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/18 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/19
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/19 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/20
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/20 (12 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/21
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/21 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/22
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/22 (12 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/23
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/23 (11 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/24
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/24 (13 ms)
+[ RUN      ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/25
+[       OK ] REMB_values/WebRtcConnectionTest.forwardRembToStreams_When_StreamTheyExist/25 (13 ms)
+[----------] 26 tests from REMB_values/WebRtcConnectionTest (319 ms total)
+
+[----------] 26 tests from REMB_values/MaxVideoBWDistributorTest
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/0
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/0 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/1
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/1 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/2
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/2 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/3
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/3 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/4
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/4 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/5
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/5 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/6
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/6 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/7
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/7 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/8
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/8 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/9
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/9 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/10
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/10 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/11
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/11 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/12
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/12 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/13
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/13 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/14
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/14 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/15
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/15 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/16
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/16 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/17
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/17 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/18
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/18 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/19
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/19 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/20
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/20 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/21
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/21 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/22
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/22 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/23
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/23 (1 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/24
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/24 (0 ms)
+[ RUN      ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/25
+[       OK ] REMB_values/MaxVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/25 (1 ms)
+[----------] 26 tests from REMB_values/MaxVideoBWDistributorTest (13 ms total)
+
+[----------] 50 tests from REMB_values/TargetVideoBWDistributorTest
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/0
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/0 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/1
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/1 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/2
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/2 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/3
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/3 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/4
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/4 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/5
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/5 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/6
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/6 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/7
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/7 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/8
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/8 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/9
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/9 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/10
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/10 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/11
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/11 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/12
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/12 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/13
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/13 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/14
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/14 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/15
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/15 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/16
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/16 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/17
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/17 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/18
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/18 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/19
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/19 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/20
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/20 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/21
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/21 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/22
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/22 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/23
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/23 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/24
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/24 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/25
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/25 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/26
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/26 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/27
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/27 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/28
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/28 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/29
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/29 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/30
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/30 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/31
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/31 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/32
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/32 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/33
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/33 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/34
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/34 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/35
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/35 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/36
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/36 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/37
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/37 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/38
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/38 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/39
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/39 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/40
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/40 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/41
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/41 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/42
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/42 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/43
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/43 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/44
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/44 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/45
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/45 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/46
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/46 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/47
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/47 (1 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/48
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/48 (0 ms)
+[ RUN      ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/49
+[       OK ] REMB_values/TargetVideoBWDistributorTest.forwardRembToStreams_When_TheyExist/49 (1 ms)
+[----------] 50 tests from REMB_values/TargetVideoBWDistributorTest (26 ms total)
+
+[----------] 10 tests from FractionLost_Values/ConnectionQualityCheckTest
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/0
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/0 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/1
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/1 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/2
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/2 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/3
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/3 (2 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/4
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/4 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/5
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/5 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/6
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/6 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/7
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/7 (1 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/8
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/8 (2 ms)
+[ RUN      ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/9
+[       OK ] FractionLost_Values/ConnectionQualityCheckTest.notifyConnectionQualityEvent_When_ItChanges/9 (1 ms)
+[----------] 10 tests from FractionLost_Values/ConnectionQualityCheckTest (14 ms total)
+
+[----------] 80 tests from VP8_layers/LayerDetectorHandlerVp8Test
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/0
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/0 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/1
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/1 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/2
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/2 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/3
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/3 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/4
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/4 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/5
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/5 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/6
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/6 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/7
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/7 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/8
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/8 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/9
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/9 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/10
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/10 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/11
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/11 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/12
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/12 (14 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/13
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/13 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/14
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/14 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/15
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/15 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/16
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/16 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/17
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/17 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/18
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/18 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/19
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.basicBehaviourShouldReadPackets/19 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/0
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/0 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/1
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/1 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/2
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/2 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/3
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/3 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/4
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/4 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/5
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/5 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/6
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/6 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/7
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/7 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/8
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/8 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/9
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/9 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/10
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/10 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/11
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/11 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/12
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/12 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/13
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/13 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/14
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/14 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/15
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/15 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/16
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/16 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/17
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/17 (14 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/18
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/18 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/19
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldDetectKeyFrameFirstPackets/19 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/0
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/0 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/1
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/1 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/2
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/2 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/3
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/3 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/4
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/4 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/5
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/5 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/6
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/6 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/7
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/7 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/8
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/8 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/9
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/9 (14 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/10
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/10 (10 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/11
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/11 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/12
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/12 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/13
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/13 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/14
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/14 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/15
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/15 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/16
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/16 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/17
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/17 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/18
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/18 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/19
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetDesiredSpatialLayerFromVp8/19 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/0
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/0 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/1
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/1 (12 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/2
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/2 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/3
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/3 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/4
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/4 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/5
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/5 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/6
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/6 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/7
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/7 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/8
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/8 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/9
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/9 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/10
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/10 (14 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/11
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/11 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/12
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/12 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/13
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/13 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/14
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/14 (14 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/15
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/15 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/16
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/16 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/17
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/17 (11 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/18
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/18 (13 ms)
+[ RUN      ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/19
+[       OK ] VP8_layers/LayerDetectorHandlerVp8Test.shouldGetBasicTemporalLayerFromVp8/19 (14 ms)
+[----------] 80 tests from VP8_layers/LayerDetectorHandlerVp8Test (964 ms total)
+
+[----------] 24 tests from QualityManagerConstraints1/QualityManagerConstraintsTest
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/0
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/0 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/1
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/1 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/2
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/2 (11 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/3
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/3 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/4
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/4 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/5
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/5 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/6
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/6 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/7
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/7 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/8
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/8 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/9
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/9 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/10
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/10 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/11
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/11 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/12
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/12 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/13
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/13 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/14
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/14 (11 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/15
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/15 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/16
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/16 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/17
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/17 (10 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/18
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/18 (14 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/19
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/19 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/20
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/20 (12 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/21
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/21 (11 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/22
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/22 (13 ms)
+[ RUN      ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/23
+[       OK ] QualityManagerConstraints1/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/23 (13 ms)
+[----------] 24 tests from QualityManagerConstraints1/QualityManagerConstraintsTest (300 ms total)
+
+[----------] 34 tests from QualityManagerConstraints2/QualityManagerConstraintsTest
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/0
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/0 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/1
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/1 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/2
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/2 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/3
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/3 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/4
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/4 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/5
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/5 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/6
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/6 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/7
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/7 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/8
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/8 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/9
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/9 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/10
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/10 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/11
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/11 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/12
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/12 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/13
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/13 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/14
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/14 (14 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/15
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/15 (10 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/16
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/16 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/17
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/17 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/18
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/18 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/19
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/19 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/20
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/20 (10 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/21
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/21 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/22
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/22 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/23
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/23 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/24
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/24 (14 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/25
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/25 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/26
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/26 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/27
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/27 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/28
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/28 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/29
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/29 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/30
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/30 (12 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/31
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/31 (11 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/32
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/32 (13 ms)
+[ RUN      ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/33
+[       OK ] QualityManagerConstraints2/QualityManagerConstraintsTest.shouldChooseCorrectLayersBasedOnConstraints/33 (11 ms)
+[----------] 34 tests from QualityManagerConstraints2/QualityManagerConstraintsTest (417 ms total)
+
+[----------] 12 tests from Padding_values/RtpPaddingManagerHandlerTestWithParam
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/0
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/0 (13 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/1
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/1 (12 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/2
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/2 (13 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/3
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/3 (11 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/4
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/4 (14 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/5
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithPublishers/5 (10 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/0
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/0 (14 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/1
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/1 (12 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/2
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/2 (13 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/3
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/3 (13 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/4
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/4 (12 ms)
+[ RUN      ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/5
+[       OK ] Padding_values/RtpPaddingManagerHandlerTestWithParam.shouldDistributePaddingWithNoPublishers/5 (12 ms)
+[----------] 12 tests from Padding_values/RtpPaddingManagerHandlerTestWithParam (149 ms total)
+
+[----------] 29 tests from SequenceNumberScenarios/SequenceNumberTranslatorTest
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/0
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/0 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/1
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/1 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/2
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/2 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/3
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/3 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/4
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/4 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/5
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/5 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/6
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/6 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/7
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/7 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/8
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/8 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/9
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/9 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/10
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/10 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/11
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/11 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/12
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/12 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/13
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/13 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/14
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/14 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/15
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/15 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/16
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/16 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/17
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/17 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/18
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/18 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/19
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/19 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/20
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/20 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/21
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/21 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/22
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/22 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/23
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/23 (1 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/24
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/24 (0 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/25
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/25 (875 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/26
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/26 (874 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/27
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/27 (848 ms)
+[ RUN      ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/28
+[       OK ] SequenceNumberScenarios/SequenceNumberTranslatorTest.shouldReturnRightOutputSequenceNumbers/28 (1392 ms)
+[----------] 29 tests from SequenceNumberScenarios/SequenceNumberTranslatorTest (3995 ms total)
+
+[----------] 29 tests from PictureIdScenarios/PictureIdTranslatorTest
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/0
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/0 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/1
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/1 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/2
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/2 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/3
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/3 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/4
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/4 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/5
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/5 (1 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/6
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/6 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/7
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/7 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/8
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/8 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/9
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/9 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/10
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/10 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/11
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/11 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/12
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/12 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/13
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/13 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/14
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/14 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/15
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/15 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/16
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/16 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/17
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/17 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/18
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/18 (1 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/19
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/19 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/20
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/20 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/21
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/21 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/22
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/22 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/23
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/23 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/24
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/24 (0 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/25
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/25 (227 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/26
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/26 (232 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/27
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/27 (204 ms)
+[ RUN      ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/28
+[       OK ] PictureIdScenarios/PictureIdTranslatorTest.shouldReturnRightOutputSequenceNumbers/28 (347 ms)
+[----------] 29 tests from PictureIdScenarios/PictureIdTranslatorTest (1012 ms total)
+
+[----------] 28 tests from TestWithMultipleThreads/SchedulerTest
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/0 (25 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/1 (24 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/2 (23 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_a_simple_task/3 (25 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/0 (20 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/1 (22 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/2 (21 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_multiple_concurrent_tasks/3 (21 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/0 (84 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/1 (62 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/2 (42 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.execute_tasks_on_different_times/3 (25 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/0 (200 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/1 (202 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/2 (202 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_drain_scheduled_tasks/3 (204 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/0 (51 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/1 (51 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/2 (51 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.stop_can_avoid_draining_scheduled_tasks/3 (51 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/0 (52 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/1 (53 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/2 (52 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.destroy_does_not_drain_tasks/3 (53 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/0
+[       OK ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/0 (106 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/1
+[       OK ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/1 (103 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/2
+[       OK ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/2 (107 ms)
+[ RUN      ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/3
+[       OK ] TestWithMultipleThreads/SchedulerTest.does_not_execute_tasks_when_stopped/3 (106 ms)
+[----------] 28 tests from TestWithMultipleThreads/SchedulerTest (2039 ms total)
+
+[----------] Global test environment tear-down
+[==========] 576 tests from 50 test cases ran. (11584 ms total)
+[  PASSED  ] 576 tests.

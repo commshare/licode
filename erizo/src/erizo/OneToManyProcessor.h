@@ -25,6 +25,7 @@ class OneToManyProcessor : public MediaSink, public FeedbackSink {
   DECLARE_LOGGER();
 
  public:
+  //key是id，订阅者实际上是mediasink
   std::map<std::string, std::shared_ptr<MediaSink>> subscribers;
   std::shared_ptr<MediaSource> publisher;
 

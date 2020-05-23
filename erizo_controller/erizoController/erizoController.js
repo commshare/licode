@@ -8,6 +8,7 @@ const config = require('./../../licode_config');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const Getopt = require('node-getopt');
 
+//读取全局默认配置
 // Configuration default values
 global.config = config || {};
 global.config.erizoController = global.config.erizoController || {};
@@ -25,6 +26,7 @@ global.config.erizoController.ssl_cert =
   global.config.erizoController.ssl_cert || '../../cert/cert.pem';
 global.config.erizoController.sslCaCerts =
   global.config.erizoController.sslCaCerts || undefined;
+//监听端口，默认是8080
 global.config.erizoController.listen_port = global.config.erizoController.listen_port || 8080;
 global.config.erizoController.listen_ssl = global.config.erizoController.listen_ssl || false;
 global.config.erizoController.turnServer = global.config.erizoController.turnServer || undefined;
@@ -52,6 +54,7 @@ global.config.erizoController.roles = global.config.erizoController.roles ||
         screen: false,
         data: true } } };
 
+//可以通过命令行控制的
 // Parse command line arguments
 const getopt = new Getopt([
   ['r', 'rabbit-host=ARG', 'RabbitMQ Host'],
@@ -61,12 +64,17 @@ const getopt = new Getopt([
   ['t', 'iceServers=ARG', 'Ice Servers URLs Array'],
   ['b', 'defaultVideoBW=ARG', 'Default video Bandwidth'],
   ['M', 'maxVideoBW=ARG', 'Max video bandwidth'],
+  //公网ip
   ['i', 'publicIP=ARG', 'Erizo Controller\'s public IP'],
+  //域名
   ['H', 'hostname=ARG', 'Erizo Controller\'s hostname'],
+  //客户端可以访问到ec的端口
   ['p', 'port', 'Port used by clients to reach Erizo Controller'],
   ['S', 'ssl', 'Enable SSL for clients'],
+  //ec 用来监听，创建新连接的端口
   ['L', 'listen_port', 'Port where Erizo Controller will listen to new connections.'],
   ['s', 'listen_ssl', 'Enable HTTPS in server'],
+  //录制的路径
   ['R', 'recording_path', 'Recording path.'],
   ['h', 'help', 'display this help'],
 ]);
@@ -102,6 +110,7 @@ Object.keys(opt.options).forEach((prop) => {
   }
 });
 
+//这些子模块编译后还能重新使用新配置加载 ？todo
 // Load submodules with updated config
 const logger = require('./../common/logger').logger;
 const amqper = require('./../common/amqper');
@@ -115,6 +124,7 @@ const log = logger.getLogger('ErizoController');
 
 let server;
 
+//创建http https服务器，赋值给server
 if (global.config.erizoController.listen_ssl) {
   // eslint-disable-next-line global-require
   const https = require('https');
@@ -132,15 +142,48 @@ if (global.config.erizoController.listen_ssl) {
   }
   server = https.createServer(options);
 } else {
+  //使用http
   // eslint-disable-next-line global-require
   const http = require('http');
-  server = http.createServer();
+  var fs = require('fs');//文件模块加载
+  var url=require("url");
+
+  //add a router to httpserver  by me 20200502
+  server = http.createServer(function(request,response)
+  {
+    console.log("ec http server req url",request.url);
+    console.log(" ec http server dirname ",__dirname);
+    if(url.parse(request.url).path=='/favicon.icon')
+    {
+      return;
+    }
+
+    fs.readFile(__dirname+'/index.html',function(err,data)
+    {
+      if(err)
+      {
+        console.log("read index.html err:",err);
+      }else
+      {
+        response.writeHead(200, {'Content-Type': 'text/plain;charset=UTF8'});
+        response.write(data);
+        response.end();
+      }
+    });
+  })
+  /*
+————————————————
+版权声明：本文为CSDN博主「小慧哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/q465162770/article/details/101285168);
+*/
 }
 
 server.listen(global.config.erizoController.listen_port);
   // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-const io = require('socket.io').listen(server, { log: false });
+ //20200502 change log:false to log:true by me
+const io = require('socket.io').listen(server, { log: true });
 
+//客户端也有这个操作，看来这个是websocket都有的
 io.set('transports', ['websocket']);
 
 const EXIT_ON_NUVE_CHECK_FAIL = global.config.erizoController.exitOnNuveCheckFail;
@@ -170,8 +213,10 @@ const addToCloudHandler = (callback) => {
         global.config.erizoAgent.networkinterface === k) {
         Object.keys(interfaces[k]).forEach((k2) => {
           address = interfaces[k][k2];
+          //保留ipv4地址
           if (address.family === 'IPv4' && !address.internal) {
             if (k === BINDED_INTERFACE_NAME || !BINDED_INTERFACE_NAME) {
+              console.log('zhangbin '+"push address "+ address.address);
               addresses.push(address.address);
             }
           }
@@ -179,18 +224,20 @@ const addToCloudHandler = (callback) => {
       }
     });
   }
-
+  //获取公网ip
   if (global.config.erizoController.publicIP === '' ||
         global.config.erizoController.publicIP === undefined) {
     publicIP = addresses[0];
   } else {
     publicIP = global.config.erizoController.publicIP;
   }
-
+  console.log('zhangbin addToCloudHandler publicip '+publicIP);
+  //保活
   const startKeepAlives = (erizoControllerId, erizoPublicIP) => {
-    console.log('startKeepAlives');
+    console.log('startKeepAlives for ec id '+ erizoControllerId +' ec public ip '+erizoPublicIP );
 
     const intervalId = setInterval(() => {
+      //使用nuve代理做保活？
       nuve.keepAlive(erizoControllerId)
         .then(() => true)
         .catch((result) => {
@@ -209,6 +256,7 @@ const addToCloudHandler = (callback) => {
             if (EXIT_ON_NUVE_CHECK_FAIL) {
               log.error('message: Closing ErizoController ' +
                    '- does not exist in Nuve CloudHandler');
+              //ec进程自己 错误 退出
               process.exit(-1);
             }
           }
@@ -223,6 +271,7 @@ const addToCloudHandler = (callback) => {
       return;
     }
 
+    //构造一个 ec ，只是配置 云提供商？公网ip；域名；端口；ssl是否打开
     const controller = {
       cloudProvider: global.config.cloudProvider.name,
       ip: publicIP,
@@ -230,16 +279,16 @@ const addToCloudHandler = (callback) => {
       port: global.config.erizoController.port,
       ssl: global.config.erizoController.ssl,
     };
+    //告诉nuve代理，添加一个新的ec
     nuve.addNewErizoController(controller).then((msg) => {
-      log.info('message: succesfully added to cloudHandler');
-
       publicIP = msg.publicIP;
+      log.info('message: ec succesfully added to cloudHandler ',publicIP);
       myId = msg.id;
       myState = 2;
 
       startKeepAlives(myId, publicIP);
       callback('callback');
-    }).catch((reason) => {
+    }).catch((reason) => { //添加ec失败
       console.log('======catch exception========',reason);
       if (reason === 'timeout') {
         log.warn('message: addECToCloudHandler cloudHandler does not respond, ' +
@@ -262,7 +311,7 @@ const addToCloudHandler = (callback) => {
 //* ******************************************************************
 //       When adding or removing rooms we use an algorithm to check the state
 //       If there is a state change we send a message to cloudHandler
-//
+//状态检测算法
 //       States:
 //            0: Not available
 //            1: Warning
@@ -302,20 +351,38 @@ const getSinglePCConfig = (singlePC) => {
     `, global: ${global.config.erizoController.allowSinglePC}`);
   return !!singlePC && global.config.erizoController.allowSinglePC;
 };
-
-const listen = () => {
+/*
+* 客户端socket.on()监听的事件：
+connect：连接成功
+connecting：正在连接
+disconnect：断开连接
+connect_failed：连接失败
+error：错误发生，并且无法被其他事件类型所处理
+message：同服务器端message事件
+anything：同服务器端anything事件
+reconnect_failed：重连失败
+reconnect：成功重连
+reconnecting：正在重连
+当第一次连接时，事件触发顺序为：connecting->connect；当失去连接时，事件触发顺序为：disconnect->reconnecting（可能进行多次）->connecting->reconnect->connect。
+* */
+const listen = ()  => {
+  //io.on(‘connection’,function(socket));//监听客户端连接,回调函数会传递本次连接的socket
   io.sockets.on('connection', (socket) => {
-    log.info(`message: socket connected, socketId: ${socket.id}`);
-
+    log.info(`ec.js listen: socket connected, socketId: ${socket.id}`);
+    //创建channel
     const channel = new Channel(socket, nuve);
 
+    //channel的 connected事件，会收到token和option
     channel.on('connected', (token, options, callback) => {
+      console.log("=======zhangbin ec.js connected====token ",token);
       options = options || {};
       try {
         const room = rooms.getOrCreateRoom(myId, token.room, token.p2p);
         options.singlePC = getSinglePCConfig(options.singlePC);
+        //channel连接成功后 ，创建room客户端
+        console.log("channel连接成功后 ，创建room客户端");
         const client = room.createClient(channel, token, options);
-        log.info(`message: client connected, clientId: ${client.id}, ` +
+        log.info(`[ec]======message: client connected, clientId: ${client.id}, ` +
             `singlePC: ${options.singlePC}`);
         if (!room.p2p && global.config.erizoController.report.session_events) {
           const timeStamp = new Date();
@@ -444,9 +511,10 @@ exports.deleteRoom = (roomId, callback) => {
 exports.getContext = () => rooms;
 
 exports.connectionStatusEvent = (clientId, connectionId, info, evt) => {
-  log.info('connectionStatusEvent', clientId, connectionId, info, evt);
+  log.info('-----connectionStatusEvent', clientId, connectionId, info, evt);
   const room = rooms.getRoomWithClientId(clientId);
   if (room) {
+    console.log("=========ec sendConnectionMessageToClient ",info);
     room.sendConnectionMessageToClient(clientId, connectionId, info, evt);
   }
 };

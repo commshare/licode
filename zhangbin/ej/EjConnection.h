@@ -1,0 +1,32 @@
+//
+// Created by zhangbin on 2019/11/24.
+//
+
+#ifndef LICODE_EJCONNECTION_H
+#define LICODE_EJCONNECTION_H
+#include "EjType.h"
+
+namespace Ej {
+enum class E_EjConnDefines {
+  CONN_INITIAL = 101,
+// CONN_STARTED        = 102,
+    CONN_GATHERED = 103,
+  CONN_READY = 104,
+  CONN_FINISHED = 105,
+  CONN_QUALITY_LEVEL = 150,
+  CONN_CANDIDATE = 201,
+  CONN_SDP = 202,
+  CONN_SDP_PROCESSED = 203,
+  CONN_FAILED = 500,
+  WARN_BAD_CONNECTION = 502,
+};
+static int RESEND_LAST_ANSWER_RETRY_TIMEOUT = 50;
+static int  RESEND_LAST_ANSWER_MAX_RETRIES = 10;
+
+static int  CONNECTION_QUALITY_LEVEL_UPDATE_INTERVAL = 5000; // ms
+class EjConnection {
+
+};
+}
+
+#endif //LICODE_EJCONNECTION_H

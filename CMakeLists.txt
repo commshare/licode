@@ -3,14 +3,286 @@ project(licode)
 
 set(CMAKE_CXX_STANDARD 14)
 
+###check macos
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(MACOSX TRUE)
+endif()
+
+### https://juejin.im/post/5d5faa175188255d827ce7d8
+# 是否使用自己的 MathFunctions 库
+# 这里设置的变量 USE_MYMATH、中间的提示文字、默认值，在 ccmake 命令中会展示
+option (USE_MYMATH
+        "Use provided math implementation"
+        ON
+        )
+
+##########
+if (MACOSX)
+add_definitions(
+        -D_DEBUG
+        -D_USEMAC
+)
+endif()
+##
+
+####${boost_LIBRARIES}
+##/usr/local/Cellar/boost/1.71.0
+message("==boost===  ${boost_LIBRARIES}  ")
+###自己设置好了，这样最快
+set(boost_INCLUDE_DIRS "/usr/local/Cellar/boost/1.71.0/include")
+set(Boost_INCLUDE_DIRS "/usr/local/Cellar/boost/1.71.0/include")
+set(Boost_LIBRARY_DIRS "/usr/local/Cellar/boost/1.71.0/lib")
+
+find_package(Boost 1.71.0 COMPONENTS thread regex system REQUIRED)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    message(STATUS "----------find boost 1.71.0-----------")
+    ##--  Boost_LIBRARIES ===Boost::thread;Boost::regex;Boost::system
+    message(STATUS " Boost_LIBRARIES ===${Boost_LIBRARIES}")
+
+    #add_executable(10_file_io ${SOURCE_FILES})
+    #target_link_libraries(your_project_name ${Boost_LIBRARIES})
+endif()
+
+include_directories(${Boost_INCLUDE_DIRS}})
+
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     include_directories("/usr/local/include")
 
     include_directories("/usr/local/opt/openssl/include")
     link_directories("/usr/local/opt/openssl/lib")
+
+    include_directories("/usr/local/Cellar/libevent/2.1.11_1/include")
+    include_directories("/usr/local/Cellar/libevent/2.1.11_1/include/event2")
+    link_directories("/usr/local/Cellar/libevent/2.1.11_1/lib")
+
+    ##for zlib
+    #For compilers to find zlib you may need to set:
+#export LDFLAGS="-L/usr/local/opt/zlib/lib"
+#export CPPFLAGS="-I/usr/local/opt/zlib/include"
+
+#For pkg-config to find zlib you may need to set:
+#export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+    include_directories("/usr/local/opt/zlib/include")
+    link_directories("/usr/local/opt/zlib/lib")
+
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
+#### erzio
+
+set (ERIZO_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/erizo)
+message(STATUS "===${ERIZO_SOURCE}")
+set(ERIZO_LIB ${ERIZO_SOURCE}/build/debug/erzio)
+link_directories(${ERIZO_LIB})
+
+## spdlog
+include_directories(zhangbin/thirdparty/spdlog/include)
+
+##json
+include_directories(zhangbin/thirdparty/nlohmann/)
+include_directories(zhangbin/thirdparty/)
+
+## tclap
+
+include_directories(zhangbin/thirdparty/tclap-1.2.2/include)
+
+##webrtc
+include_directories(${ERIZO_SOURCE}/src/third_party/webrtc/src)
+
+####zlib
+include_directories("/usr/local/opt/zlib/include")
+link_directories("/usr/local/opt/zlib/lib")
+
+####incude zhangbin
+include_directories(zhangbin/)
+include_directories(zhangbin/common/)
+include_directories(zhangbin/common/OSSupport)
+
+include_directories(zhangbin/include/)
+include_directories(zhangbin/include/OSSupport)
+include_directories(zhangbin/server/)
+include_directories(zhangbin/server/Protocol)
+
+include_directories(zhangbin/thirdparty/polarssl-1.3.9/include)
+include_directories(zhangbin/thirdparty/jsoncpp-1.6.5/include)
+
+file(GLOB_RECURSE ZB_JSON_CPP zhangbin/thirdparty/jsoncpp-1.6.5/src/*.cpp)
+file(GLOB_RECURSE ZB_COMM_CPP zhangbin/common/*.cpp zhangbin/common/OSSupport/*.cpp)
+file(GLOB_RECURSE ZB_CLI_CPP zhangbin/client/*.cpp)
+file(GLOB_RECURSE ZB_SVR_CPP zhangbin/server/*.cpp zhangbin/server/OSSupport/*.cpp
+        zhangbin/server/Protocol/*.cpp zhangbin/server/PolarSSL++/*.cpp
+        zhangbin/server/Channel/*.cpp
+        )
+
+set(ZB_FULL_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+##这个是关于dump的windows用的
+list(REMOVE_ITEM ZB_COMM_CPP ${ZB_FULL_PATH}/zhangbin/common/StackWalker.cpp)
+##这个好像写的有点麻烦
+list(REMOVE_ITEM ZB_COMM_CPP ${ZB_FULL_PATH}/zhangbin/server/main.cpp)
+
+##这个需要
+#list(REMOVE_ITEM ZB_COMM_CPP ${ZB_FULL_PATH}/zhangbin/common/OSSupport/StackTrace.cpp)
+
+message(STATUS "---------------------")
+message(STATUS "===${ZB_FULL_PATH}")
+message(STATUS "===${ZB_COMM_CPP}")
+message(STATUS "---------------------")
+
+add_executable(zhangbin-svr
+${ZB_COMM_CPP}
+${ZB_SVR_CPP}
+${ZB_JSON_CPP}
+)
+####必须加这个才能检测到boost future 命名空间
+set(ERIZO_CMAKE_CXX_FLAGS "${ERIZO_CMAKE_CXX_FLAGS} -DBOOST_THREAD_PROVIDES_FUTURE -DBOOST_THREAD_PROVIDES_FUTURE_CONTINUATION -DBOOST_THREAD_PROVIDES_FUTURE_WHEN_ALL_WHEN_ANY")
+
+
+##z 就是lib啦
+target_link_libraries(zhangbin-svr z event event_core event_pthreads erizo)
+##############################
+#if(${ERIZO_BUILD_TYPE} STREQUAL "debug")
+#    message("Generating DEBUG project")
+#    set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11 ${ERIZO_CMAKE_CXX_FLAGS}")
+#elseif(${ERIZO_BUILD_TYPE} STREQUAL "sanitizer")
+#    message("Generating SANITIZER project")
+#    set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11 ${ERIZO_CMAKE_CXX_FLAGS} -O1 -fno-omit-frame-pointer -fsanitize=address -fno-optimize-sibling-calls")
+#else()
+#    message("Generating RELEASE project")
+#    set(CMAKE_CXX_FLAGS "-g -Wall -O3 -std=c++11 ${ERIZO_CMAKE_CXX_FLAGS}")
+#endif()
+
+message("Generating DEBUG project")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11 ${ERIZO_CMAKE_CXX_FLAGS}")
+
+#global variable
+set(THIRD_PARTY_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/../../build/libdeps/build/include/")
+set(THIRD_PARTY_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../../build/libdeps/build/lib/")
+
+
+
+##########################
+#file(GLOB_RECURSE ERIZO_SOURCES_FILES ${ERIZO_SOURCE}/*.cpp ${ERIZO_SOURCE}/*.h ${ERIZO_TEST}/*.cpp)
+#add_custom_target(lint
+#        ${ERIZO_ROOT_DIR}/utils/cpplint.py --filter=-legal/copyright,-build/include --linelength=120 ${ERIZO_SOURCES_FILES}
+#        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+#        COMMENT "Executing lint"
+#        )
+#
+
+
+
+## Depencencies
+#
+## Add /usr/local/include
+#IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+#    include_directories("/usr/local/include")
+#ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+#
+## GLIB
+#find_package(Glib REQUIRED)
+#include_directories(${GLIB_INCLUDE_DIRS})
+#
+## BOOST
+###boost默认已经安装，路径是啥？？？
+##include(${CMAKE_CURRENT_SOURCE_DIR}/../conan_paths.cmake)
+#set (BOOST_LIBS thread regex system)
+#find_package(boost)
+#include_directories(${boost_INCLUDE_DIRS})
+#
+#
+#message(STATUS "---------------------")
+#message(STATUS "Boost_FOUND: ${Boost_FOUND}")
+#message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+#message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
+#message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
+#message(STATUS "---------------------")
+#
+set(ERIZO_CMAKE_CXX_FLAGS "${ERIZO_CMAKE_CXX_FLAGS} -DBOOST_THREAD_PROVIDES_FUTURE -DBOOST_THREAD_PROVIDES_FUTURE_CONTINUATION -DBOOST_THREAD_PROVIDES_FUTURE_WHEN_ALL_WHEN_ANY")
+
+## GTHREAD
+#find_library(GTHREAD gthread-2.0 HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${GTHREAD})
+#
+## SRTP
+#find_library(SRTP srtp2 HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${SRTP})
+#
+## NICE
+#find_library(NICE nice HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${NICE})
+
+# OPENSSL
+##export LDFLAGS=-L/usr/local/opt/openssl/lib
+## export CPPFLAGS=-I/usr/local/opt/openssl/include
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    include_directories("/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/include")
+    link_directories("/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib")
+    #include_directories("/usr/local/opt/openssl/include")
+    #link_directories("/usr/local/opt/openssl/lib")
+    #link_directories("/usr/lib")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+#
+#find_library(SSL ssl HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${SSL})
+#find_library(CRYPTO crypto HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${CRYPTO})
+#message("==OPENSSL=1==  ${SSL} ${CRYPTO} ")
+
+##to link our own openssl
+##/usr/lib/libssl.dylib /usr/lib/libcrypto.dylib
+set(SSL "/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libssl.a")
+set(CRYPTO "/Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libcrypto.a")
+message("==OPENSSL==2=  ${SSL} ${CRYPTO} ")
+
+
+
+#
+## Libav
+#find_library(AVUTIL avutil HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${AVUTIL})
+#set (LIBS ${AVUTIL})
+#find_library(AVCODEC avcodec HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${AVCODEC})
+#set (LIBS ${LIBS} ${AVCODEC})
+#find_library(AVFORMAT avformat HINTS "${THIRD_PARTY_LIB}")
+#test_lib(${AVFORMAT})
+#set (LIBS ${LIBS} ${AVFORMAT})
+#
+## LOG4CXX
+#find_library(LOG log4cxx)
+#test_lib(${LOG})
+
+# WEBRTC
+# 先不编译webrtc
+#include("${CMAKE_CURRENT_SOURCE_DIR}/third_party/webrtc.cmake")
+
+# NICER
+# 先不编译nicer
+#include("${CMAKE_CURRENT_SOURCE_DIR}/third_party/nicer.cmake")
+
+## Erizo
+#先不编译erzio
+#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/erizo")
+
+
+
+set(GMOCK_BUILD "${CMAKE_CURRENT_BINARY_DIR}/libdeps/gmock")
+set(GMOCK_VERSION "1.8.0")
+
+##外部工程是gtest
+#先不编译gtest
+#ExternalProject_Add(gtest
+#        URL "https://github.com/google/googletest/archive/release-${GMOCK_VERSION}.tar.gz"
+#        PREFIX ${GMOCK_BUILD}
+#        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${GMOCK_BUILD} ${SANITIZER_OPTION}
+#        )
+
+
+
+###############
+add_subdirectory(zhangbin/nrappkit)
 include_directories(erizo/src/erzio)
+include_directories(zhangbin/nrappkit/src)
 
 include_directories(build/libdeps/nvm/test)
 include_directories(build/libdeps/nvm/test/fast)
@@ -71,18 +343,25 @@ include_directories(erizo/build/debug/libdeps/nicer/include/net)
 include_directories(erizo/build/debug/libdeps/nicer/include/net/test)
 include_directories(erizo/build/debug/libdeps/nicer/include/plugin)
 include_directories(erizo/build/debug/libdeps/nicer/include/plugin/api)
-include_directories(erizo/build/debug/libdeps/nicer/include/plugin/internal)
-include_directories(erizo/build/debug/libdeps/nicer/include/port)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin/include)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/generic)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/generic/include)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/generic/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/linux)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/linux/include)
-include_directories(erizo/build/debug/libdeps/nicer/include/port/linux/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/include/registry)
+
+##for sever include of
+#In file included from /Users/zhangbin/tet/licodelllcode/licode/zhangbin/server/OSSupport/Socket.cpp:5:
+#In file included from /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/sys/ioctl.h:72:
+#/Users/zhangbin/tet/licodelllcode/licode/erizo/build/debug/libdeps/nicer/include/port/linux/include/sys/ttycom.h:36:10: fatal error: 'asm/ioctls.h' fi
+#
+
+#include_directories(erizo/build/debug/libdeps/nicer/include/plugin/internal)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin/include)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/darwin/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/generic)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/generic/include)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/generic/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/linux)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/linux/include)
+#include_directories(erizo/build/debug/libdeps/nicer/include/port/linux/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/include/registry)
 include_directories(erizo/build/debug/libdeps/nicer/include/share)
 include_directories(erizo/build/debug/libdeps/nicer/include/stats)
 include_directories(erizo/build/debug/libdeps/nicer/include/stun)
@@ -96,48 +375,48 @@ include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/net/te
 include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/stun)
 include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/stun/test)
 include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/testua)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/util)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/event)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/log)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin/api)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin/internal)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/registry)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/share)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/stats)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/util)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/util/libekr)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/event)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/log)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin/api)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin/internal)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux/include)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux/include/sys)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/registry)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/share)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/stats)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/util)
-include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/util/libekr)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer/src/util)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/event)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/log)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin/api)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/plugin/internal)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/darwin/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/generic/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/port/linux/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/registry)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/share)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/stats)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/util)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/include/util/libekr)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/event)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/log)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin/api)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/plugin/internal)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/darwin/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/generic/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux/include)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/port/linux/include/sys)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/registry)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/share)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/stats)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/util)
+#include_directories(erizo/build/debug/libdeps/nicer/src/project_nicer-build/third_party/nrappkit/src/project_nrappkit/src/util/libekr)
 include_directories(erizo/src/erizo)
 include_directories(erizo/src/erizo/bandwidth)
 include_directories(erizo/src/erizo/dtls)
@@ -1361,4 +1640,4 @@ add_executable(licode
         node_modules/nan/nan_string_bytes.h
         node_modules/nan/nan_typedarray_contents.h
         node_modules/nan/nan_weak.h
-        node_modules/node-uuid/benchmark/benchmark-native.c docs/cpptt/test_std_promise.cpp)
+        node_modules/node-uuid/benchmark/benchmark-native.c docs/cpptt/test_std_promise.cpp zhangbin/ej/EjConnection.cpp zhangbin/ej/EjConnection.h zhangbin/ej/EjWebrtcConn.cpp zhangbin/ej/EjWebrtcConn.h zhangbin/ej/EjMediaStream.cpp zhangbin/ej/EjMediaStream.h zhangbin/ej/EjType.h zhangbin/ej/EjThreadPool.cpp zhangbin/ej/EjThreadPool.h zhangbin/ej/EjSingleton.h)

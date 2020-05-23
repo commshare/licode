@@ -25,9 +25,11 @@ const doInit = (req, callback) => {
 
 const getTokenString = (id, token) => {
   const toSign = `${id},${token.host}`;
+  console.log('[zb] getTokenString key '+dataBase.nuveKey );
   const hex = crypto.createHmac('sha1', dataBase.nuveKey).update(toSign).digest('hex');
+  //给hex做base64得到签名
   const signed = (new Buffer(hex)).toString('base64');
-
+  console.log(' getTokenString signature ',signed );
   const tokenJ = {
     tokenId: id,
     host: token.host,
@@ -35,7 +37,7 @@ const getTokenString = (id, token) => {
     signature: signed,
   };
   const tokenS = (new Buffer(JSON.stringify(tokenJ))).toString('base64');
-
+  //实际返回的是tokneS
   return tokenS;
 };
 
@@ -88,11 +90,11 @@ const generateToken = (req, callback) => {
       token.use = 0;
       token.host = dataBase.testErizoController;
 
-      log.info('message: generateTestToken');
+      log.info('message: generateTestToken ',token);
 
       tokenRegistry.addToken(token, (id, err) => {
         if (err) {
-          return callback('error');
+          return callback(' addToken error');
         }
         token._id = id;
         currentService.testToken = token;
@@ -127,7 +129,7 @@ const generateToken = (req, callback) => {
       }
 
       token.host += `:${ec.port}`;
-
+      log.info(" tokenRegistry.addToken ",token);
       tokenRegistry.addToken(token, (id, err) => {
         if (err) {
           log.error('err: tokenRegistry.addToken ');
@@ -166,7 +168,7 @@ exports.create = (req, res) => {
         return;
       }
       log.info(`message: createToken success, roomId: ${currentRoom._id}, ` +
-        `serviceId: ${currentService._id}`);
+        `serviceId: ${currentService._id}` + `tokenS `+tokenS );
       res.send(tokenS);
     });
   });

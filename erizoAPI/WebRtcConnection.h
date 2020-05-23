@@ -16,7 +16,7 @@
 
 typedef boost::variant<std::string, std::shared_ptr<erizo::SdpInfo>> ResultVariant;
 typedef std::pair<Nan::Persistent<v8::Promise::Resolver> *, ResultVariant> ResultPair;
-
+//这可能是为了放到libuv的线程里去跑。
 class ConnectionStatCallWorker : public Nan::AsyncWorker {
  public:
   ConnectionStatCallWorker(Nan::Callback *callback, std::weak_ptr<erizo::WebRtcConnection> weak_connection);
@@ -42,11 +42,11 @@ class WebRtcConnection : public erizo::WebRtcConnectionEventListener,
     DECLARE_LOGGER();
     static NAN_MODULE_INIT(Init);
 
-    std::shared_ptr<erizo::WebRtcConnection> me;
+    std::shared_ptr<erizo::WebRtcConnection> me; //封装的这个
     std::queue<int> event_status;
     std::queue<std::string> event_messages;
     std::queue<ResultPair> futures;
-    FuturesManager futures_manager_;
+    FuturesManager futures_manager_;//这个牛
 
     boost::mutex mutex;
 

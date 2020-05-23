@@ -168,7 +168,11 @@ exports.RoomController = (spec) => {
     callback(true);
   };
 
+  //room控制器处理来自客户端的连接消息，实际上是丢入mq里
   that.processConnectionMessageFromClient = (erizoId, clientId, connectionId, msg, callback) => {
+    log.info(`processConnectionMessageFromClient, msg: ${msg}`);
+    console.log(" ===>processConnectionMessageFromClient to mq ctlid ",erizoControllerId," clientId ",
+        clientId," connectid ",connectionId," msg ",msg);
     const args = [erizoControllerId, clientId, connectionId, msg];
     amqper.callRpc(getErizoQueueFromErizoId(erizoId), 'processConnectionMessage', args, { callback });
   };
@@ -184,7 +188,9 @@ exports.RoomController = (spec) => {
      * of the OneToManyProcessor.
      */
   that.addPublisher = (clientId, streamId, options, callback, retries) => {
+    log.info('roomController.js addPublisher ');
     if (retries === undefined) {
+      log.info('roomController.js addPublisher retries 0');
       retries = 0;
     }
 
@@ -210,6 +216,7 @@ exports.RoomController = (spec) => {
                 // then we call its addPublisher method.
         const args = [erizoControllerId, clientId, streamId, options];
         streamManager.updateErizoIdForPublishedStream(streamId, erizoId);
+        log.info('roomController.js addPublisher amqper.callRpc');
 
         amqper.callRpc(getErizoQueueFromStreamId(streamId), 'addPublisher', args,
           { callback: (data) => {
@@ -463,6 +470,7 @@ exports.RoomController = (spec) => {
     const args = [streamId];
     const theId = getErizoQueueFromStreamId(streamId);
     log.debug('Get stats for publisher ', streamId, 'theId', theId);
+    //状态要从amq里获取么？ todo
     amqper.callRpc(getErizoQueueFromStreamId(streamId), 'getStreamStats', args, {
       callback: (data) => {
         callback(data);

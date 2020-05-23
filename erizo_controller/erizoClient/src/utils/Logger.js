@@ -42,7 +42,8 @@ const Logger = (() => {
   const log = (level, ...args) => {
     let out = logPrefix;
     if (level < Logger.logLevel) {
-      return;
+      //zhangbin 先不拒绝level 20200513
+      //return;
     }
     if (level === Logger.DEBUG) {
       out = `${out}DEBUG`;

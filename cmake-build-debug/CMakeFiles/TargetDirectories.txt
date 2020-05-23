@@ -1,0 +1,6 @@
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/CMakeFiles/licode.dir
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/CMakeFiles/zhangbin-svr.dir
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/CMakeFiles/rebuild_cache.dir
+/Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug/zhangbin/nrappkit/CMakeFiles/edit_cache.dir

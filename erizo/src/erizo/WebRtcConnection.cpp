@@ -687,10 +687,12 @@ boost::future<void> WebRtcConnection::asyncTask(
     std::function<void(std::shared_ptr<WebRtcConnection>)> f) {
   auto task_promise = std::make_shared<boost::promise<void>>();
   std::weak_ptr<WebRtcConnection> weak_this = shared_from_this();
+  //分发task
   worker_->task([weak_this, f, task_promise] {
     if (auto this_ptr = weak_this.lock()) {
       f(this_ptr);
     }
+    //完成之后触发promise
     task_promise->set_value();
   });
   return task_promise->get_future();
@@ -857,10 +859,11 @@ void WebRtcConnection::write(std::shared_ptr<DataPacket> packet) {
   if (transport == nullptr) {
     return;
   }
+  //先处理rtp扩展，然后再write
   this->extension_processor_.processRtpExtensions(packet);
   transport->write(packet->data, packet->length);
 }
-
+//仅仅是测试用
 void WebRtcConnection::setTransport(std::shared_ptr<Transport> transport) {  // Only for Testing purposes
   video_transport_ = std::move(transport);
   bundle_ = true;

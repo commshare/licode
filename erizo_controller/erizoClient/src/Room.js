@@ -171,6 +171,7 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     });
   };
 
+  ///本地流连接
   const createLocalStreamP2PConnection = (streamInput, peerSocket) => {
     const stream = streamInput;
     const connection = that.erizoConnectionManager.getOrBuildErizoConnection(
@@ -178,6 +179,7 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
     stream.addPC(connection, peerSocket);
 
+    //监听icestatechanged
     stream.on('icestatechanged', (evt) => {
       Logger.info(`${stream.getID()} - iceConnectionState: ${evt.msg.state}`);
       if (evt.msg.state === 'failed') {
@@ -209,8 +211,9 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const getErizoConnectionOptions = (stream, connectionId, erizoId, options, isRemote) => {
+    Logger.info('getErizoConnectionOptions connectionId ' ,connectionId );
     const connectionOpts = {
-      callback(message, streamId = stream.getID()) {
+    callback(message, streamId = stream.getID()) {
         Logger.info('Sending message', message, stream.getID(), streamId);
         if (message && message.type && message.type === 'updatestream') {
           socket.sendSDP('streamMessage', {
@@ -219,6 +222,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
             msg: message,
             browser: stream.pc && stream.pc.browser }, undefined, () => {});
         } else {
+          Logger.info(' socket.sendSDP connectionMessage ');
+
           socket.sendSDP('connectionMessage', {
             connectionId,
             erizoId,
@@ -267,8 +272,10 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     });
   };
 
+  //收到publish应答之后，调用这个方法
   const createLocalStreamErizoConnection = (streamInput, connectionId, erizoId, options) => {
     const stream = streamInput;
+    Logger.info(' createLocalStreamErizoConnection connectionId ',connectionId);
     const connectionOpts = getErizoConnectionOptions(stream, connectionId, erizoId, options);
     stream.addPC(
       that.erizoConnectionManager
@@ -323,6 +330,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   // type can be "media" or "data"
 
   const socketOnAddStream = (arg) => {
+    Logger.info("socketOnAddStream");
+
     if (remoteStreams.has(arg.id)) {
       return;
     }
@@ -342,6 +351,7 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const socketOnStreamMessageFromErizo = (arg) => {
+    Logger.info("-----socketOnStreamMessageFromErizo");
     if (arg.context === 'auto-streams-subscription') {
       onAutomaticStreamsSubscription(arg.mess);
     } else if (arg.context === 'auto-streams-unsubscription') {
@@ -386,6 +396,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const socketOnConnectionMessageFromErizo = (arg) => {
+    Logger.info("socketOnConnectionMessageFromErizo");
+
     let done = false;
     if (arg.evt.type === 'quality_level') {
       socketOnConnectionQualityLevel(arg);
@@ -412,6 +424,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const socketOnStreamMessageFromP2P = (arg) => {
+    Logger.info("socketOnStreamMessageFromP2P");
+
     let stream = localStreams.get(arg.streamId);
 
     if (stream && !stream.failed) {
@@ -456,6 +470,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
   // We receive an event of new data in one of the streams
   const socketOnDataStream = (arg) => {
+    Logger.info("socketOnDataStream");
+
     const stream = remoteStreams.get(arg.id);
     const evt = StreamEvent({ type: 'stream-data', msg: arg.msg, stream });
     stream.dispatchEvent(evt);
@@ -463,6 +479,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
   // We receive an event of new data in one of the streams
   const socketOnUpdateAttributeStream = (arg) => {
+    Logger.info("socketOnUpdateAttributeStream");
+
     const stream = remoteStreams.get(arg.id);
     const evt = StreamEvent({ type: 'stream-attributes-update',
       attrs: arg.attrs,
@@ -473,6 +491,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
   // We receive an event of a stream removed from the room
   const socketOnRemoveStream = (arg) => {
+    Logger.info("socketOnRemoveStream");
+
     let stream = localStreams.get(arg.id);
     if (stream) {
       onStreamFailed(stream, 'Stream removed from server', 'server');
@@ -489,6 +509,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
   // The socket has disconnected
   const socketOnDisconnect = () => {
+    Logger.info("socketOnDisconnect");
+
     Logger.info('Socket disconnected, lost connection to ErizoController');
     if (that.state !== DISCONNECTED) {
       Logger.error('Unexpected disconnection from ErizoController');
@@ -499,6 +521,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const socketOnICEConnectionFailed = (arg) => {
+    Logger.info("socketOnICEConnectionFailed");
+
     let stream;
     if (!arg.streamId) {
       return;
@@ -514,6 +538,9 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const socketOnError = (e) => {
+    Logger.info("socketOnError");
+
+//连不到ec
     Logger.error('Cannot connect to erizo Controller');
     const connectEvt = RoomEvent({ type: 'room-error', message: e });
     that.dispatchEvent(connectEvt);
@@ -530,6 +557,8 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const updateAttributesFromStreamEvent = (evt) => {
+    Logger.info("updateAttributesFromStreamEvent");
+
     const stream = evt.stream;
     const attrs = evt.attrs;
     if (stream.local) {
@@ -549,7 +578,9 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
   };
 
   const createSdpConstraints = (type, stream, options) => ({
-    state: type,
+    //Logger.info("createSdpConstraints");
+
+  state: type,
     data: stream.hasData(),
     audio: stream.hasAudio(),
     video: stream.hasVideo(),
@@ -617,12 +648,15 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
   const publishErizo = (streamInput, options, callback = () => {}) => {
     const stream = streamInput;
-    Logger.info('Publishing to Erizo Normally, is createOffer', options.createOffer);
+    console.log("publishErizo options ",options);
+    Logger.info('[publishErizo]Publishing to Erizo Normally, is createOffer', options.createOffer);
     const constraints = createSdpConstraints('erizo', stream, options);
     constraints.minVideoBW = options.minVideoBW;
     constraints.maxVideoBW = options.maxVideoBW;
     constraints.scheme = options.scheme;
+    Logger.info('[publishErizo]Publishing to Erizo Normally[socket.sendSDP(publish] :screateOffer', options.createOffer);
 
+    //向channel publish发送 sdp?
     socket.sendSDP('publish', constraints, undefined, (id, erizoId, connectionId, error) => {
       if (id === null) {
         Logger.error('Error publishing stream', error);
@@ -630,6 +664,15 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
         return;
       }
       populateStreamFunctions(id, stream, error, undefined);
+      //打印收到的应答信息
+      console.log(' createLocalStreamErizoConnection '+ stream );
+      console.log(' createLocalStreamErizoConnection '+ connectionId );
+      Logger.info(' createLocalStreamErizoConnection '+ connectionId);
+      console.log(' createLocalStreamErizoConnection '+ erizoId );
+      Logger.info(' createLocalStreamErizoConnection '+ erizoId);
+      console.log(' createLocalStreamErizoConnection '+ options );
+      Logger.info(' createLocalStreamErizoConnection '+ options);
+
       createLocalStreamErizoConnection(stream, connectionId, erizoId, options);
       callback(id);
     });
@@ -733,11 +776,13 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     socket = undefined;
   };
 
-  // Public functions
+  // Public functions 对外
 
+  //建立一个到房间的连接
   // It stablishes a connection to the room.
   // Once it is done it throws a RoomEvent("room-connected")
   that.connect = (options = {}) => {
+    //解析token
     const token = Base64.decodeBase64(spec.token);
 
     if (that.state !== DISCONNECTED) {
@@ -746,12 +791,15 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
     // 1- Connect to Erizo-Controller
     that.state = CONNECTING;
+    //通过socket连接到ec。这个socket是ws么？
     socket.connect(JSON.parse(token), options, (response) => {
+      //连接到ec成功了了
       let stream;
       const streamList = [];
       const streams = response.streams || [];
       const roomId = response.id;
 
+      //ec的应答
       that.p2p = response.p2p;
       that.iceServers = response.iceServers;
       that.state = CONNECTED;
@@ -760,9 +808,12 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
       spec.maxVideoBW = response.maxVideoBW;
 
       // 2- Retrieve list of streams
+      //ec会告诉你这个房间里有多少流？
       const streamIndices = Object.keys(streams);
+      console.log('  Retrieve list of streams length '+streamIndices.length);
       for (let index = 0; index < streamIndices.length; index += 1) {
         const arg = streams[streamIndices[index]];
+        //创建流
         stream = Stream(that.ConnectionHelpers, { streamID: arg.id,
           local: false,
           audio: arg.audio,
@@ -782,10 +833,12 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
 
       Logger.info(`Connected to room, roomId ${that.roomID}`);
 
+      //抛出一个加租成功的事件回调
       const connectEvt = RoomEvent({ type: 'room-connected', streams: streamList });
+      //时间分发到上层？
       that.dispatchEvent(connectEvt);
-    }, (error) => {
-      Logger.error(`Error connecting to room, roomId: ${that.roomID}, Error:`, error);
+    }, (error) => { //连接ec出错了
+      Logger.error(`！！！Error connecting to room, roomId: ${that.roomID}, Error:`, error);
       const connectEvt = RoomEvent({ type: 'room-error', message: error });
       that.dispatchEvent(connectEvt);
     });
@@ -800,11 +853,14 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     that.dispatchEvent(disconnectEvt);
   };
 
+  //发布流，相当于一个用户开播了？
   // It publishes the stream provided as argument. Once it is added it throws a
   // StreamEvent("stream-added").
   that.publish = (streamInput, optionsInput = {}, callback = () => {}) => {
+
     const stream = streamInput;
     const options = optionsInput;
+    console.log('=======publish================',options);
 
     options.maxVideoBW = options.maxVideoBW || spec.defaultVideoBW;
     if (options.maxVideoBW > spec.maxVideoBW) {
@@ -829,17 +885,22 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     };
 
     // 1- If the stream is not local or it is a failed stream we do nothing.
+    //流必须是本地的
     if (stream && stream.local && !stream.failed && !localStreams.has(stream.getID())) {
       // 2- Publish Media Stream to Erizo-Controller
       if (stream.hasMedia()) {
         if (stream.isExternal()) {
+          Logger.info('Trying to publish external  stream, stream:', stream);
           publishExternal(stream, options, callback);
         } else if (that.p2p) {
+          Logger.info('Trying to publish p2p  stream, stream:', stream);
           publishP2P(stream, options, callback);
         } else {
+          Logger.info('Trying to publish erzio  stream, stream:', stream);
           publishErizo(stream, options, callback);
         }
       } else if (stream.hasData()) {
+        Logger.info('Trying to publish datachannel  stream, stream:', stream);
         publishData(stream, options, callback);
       }
     } else {
@@ -1076,6 +1137,7 @@ const Room = (altIo, altConnectionHelpers, altConnectionManager, specInput) => {
     return streams;
   };
 
+  //监听这些socketio的事件么？？
   that.on('room-disconnected', clearAll);
 
   socket.on('onAddStream', socketEventToArgs.bind(null, socketOnAddStream));

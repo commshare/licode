@@ -35,6 +35,7 @@ class Client extends EventEmitter {
     log.info(`message: getOrCreateConnection, clientId: ${this.id}, singlePC: ${this.singlePc}`);
     if (!this.singlePc || !connection) {
       const id = this._getNewConnectionClientId();
+      //创建connection
       connection = new Connection(this.erizoControllerId, id, this.threadPool,
         this.ioThreadPool, this.id, options);
       connection.on('status_event', this.emit.bind(this, 'status_event'));
@@ -50,6 +51,7 @@ class Client extends EventEmitter {
   addConnection(connection) {
     log.info(`message: Adding connection to Client, clientId: ${this.id}, ` +
       `connectionId: ${connection.id}`);
+    //key 为连接id，值为connection插入map
     this.connections.set(connection.id, connection);
     log.debug(`Client connections list size after add : ${this.connections.size}`);
   }

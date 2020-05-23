@@ -15,7 +15,7 @@ if ! pgrep -f rabbitmq; then
   sudo echo
   sudo rabbitmq-server > $BUILD_DIR/rabbit.log &
 fi
-echo "======init nvue====="
+echo "======init nuve====="
 cd $ROOT/nuve
 ./initNuve.sh
 

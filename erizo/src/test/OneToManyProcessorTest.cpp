@@ -64,8 +64,10 @@ class MockSubscriber: public erizo::MediaSink, public erizo::FeedbackSource {
 class OneToManyProcessorTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
+   //一个source 是publisher，一个sink是subscriber
     publisher = std::make_shared<MockPublisher>();
     subscriber = std::make_shared<MockSubscriber>();
+    //这样就可以设置给muxer了
     otm.setPublisher(publisher);
     otm.addSubscriber(subscriber, kArbitraryPeerId);
   }

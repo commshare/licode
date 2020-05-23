@@ -1,5 +1,13 @@
 # Licode
 
+##
+```
+[licode] SuperService ID 5dc144d44bf8f668d8986f5a
+[licode] SuperService KEY 14031
+
+```
+
+
 An Open Source WebRTC Communications Platform.
 
 With Licode you can host your own WebRTC conference provider and build applications on top of it with easy to use APIs: [client-side](http://licode.readthedocs.io/en/master/client_api/) and [server-side](http://licode.readthedocs.io/en/master/server_api/).

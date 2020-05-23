@@ -14,22 +14,22 @@ struct DataPacket;
 
 static const double DEFAULT_DEPTH = 3.0;
 static const double DEFAULT_MAX = 5.0;
-
+//包的重新排序的队列
 // This class implements a packet reordering queue. Here's what it does:
 //
 // 1. Receives incoming packets and pushes them into a queue based on sequence number
-// 2. Rejects duplicate packets--duplicate sequence numbers are dropped on the floor
+// 2. Rejects duplicate packets--duplicate sequence numbers are dropped on the floor 重复的
 // 3. Handles sequence number wrap (e.g. packet "1" is technically greater than "65535" because that
-//    is a sequence number wrap
-// 4. Handles out of order packets
-// 5. Handles late packets.  Packets with sequence number greater than the last sequence number
+//    is a sequence number wrap 包序号的回滚
+// 4. Handles out of order packets 乱序
+// 5. Handles late packets. 迟到的  Packets with sequence number greater than the last sequence number
 //    handed out through popPacket are discarded.  There's a log message to help identify
 //    a sane value for their queue depth.
-// 6. Is threadsafe.  All public methods lock to ensure the container isn't fouled by multithreaded
+// 6. Is threadsafe.  线程安全 All public methods lock to ensure the container isn't fouled by multithreaded
 //    access.  This also prevents a minimal amount of locking in calling classes, which prevents
 //    blocking of worker threads.
-// 7. Manages queue depth.  It won't return data until depth (which is % of seconds) is attained, and
-//    will prevent the queue from growing over max seconds.
+// 7. Manages queue depth.  队列深度是多少个秒的数据 It won't return data until depth (which is % of seconds) is attained,
+// and will prevent the queue from growing over max seconds.
 //
 // Usage is straight-forward:
 //
@@ -59,6 +59,7 @@ class RtpPacketQueue {
   int lastSequenceNumberGiven_;
   bool rtpSequenceLessThan(uint16_t x, uint16_t y);
 
+  //使用一个时间戳，这样就可以理解队列里有多少秒的数据了。
   // We use a timebase so we can understand how many seconds of data we have in our queue.
   unsigned int timebase_;
   double depthInSeconds_;

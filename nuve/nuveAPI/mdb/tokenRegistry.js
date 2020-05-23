@@ -24,6 +24,8 @@ exports.getList = (callback) => {
 };
 
 const getToken = (id, callback) => {
+   log.info(`-----message: getToken token  tokenId: ${id}`);
+   //todo 有时候在db查询不到，是为啥呢？ 20200517
   db.tokens.findOne({ _id: db.ObjectId(id) }, (err, token) => {
     if (token == null) {
       token = undefined;
@@ -38,6 +40,8 @@ const getToken = (id, callback) => {
 exports.getToken = getToken;
 
 const hasToken = (id, callback) => {
+     log.info(`----- hasToken id:  ${id}`);
+
   getToken(id, (token) => {
     if (token === undefined) {
       callback(false);

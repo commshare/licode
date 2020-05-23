@@ -36,7 +36,7 @@ const checkSignature = (params, key) => {
   if (params.signature_method !== 'HMAC_SHA1') {
     return false;
   }
-
+  //计算客户端签名
   const calculatedSignature = mauthParser.calculateClientSignature(params, key);
 
   if (calculatedSignature !== params.signature) {

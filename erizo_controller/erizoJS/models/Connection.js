@@ -47,7 +47,9 @@ class Connection extends events.EventEmitter {
     this.options = options;
     this.trickleIce = options.trickleIce || false;
     this.metadata = this.options.metadata || {};
+    //todo 这怎么赋值的
     this.onGathered = new Promise((resolve, reject) => {
+      console.log("=====onGathered======'");
       this._gatheredResolveFunction = resolve;
       this._gatheredRejectFunction = reject;
     });
@@ -134,6 +136,7 @@ class Connection extends events.EventEmitter {
   }
 
   createAnswer() {
+    console.log("&&&&& createAnswer");
     return this.getLocalSdp().then((info) => {
       log.debug('getting local sdp for answer', info);
       return { type: 'answer', sdp: info };
@@ -141,6 +144,8 @@ class Connection extends events.EventEmitter {
   }
 
   createOffer() {
+    console.log("&&&&& createOffer");
+
     return this.getLocalSdp().then((info) => {
       log.debug('getting local sdp for offer', info);
       return { type: 'offer', sdp: info };
@@ -148,6 +153,7 @@ class Connection extends events.EventEmitter {
   }
 
   getLocalSdp() {
+    console.log("&&&&& getLocalSdp");
     return this.wrtc.getLocalDescription().then((desc) => {
       if (!desc) {
         log.error('Cannot get local description');
@@ -163,6 +169,7 @@ class Connection extends events.EventEmitter {
   }
 
   updateConnectionQualityLevel() {
+    console.log(" updateConnectionQualityLevel ");
     if (this.wrtc) {
       const newQualityLevel = this.wrtc.getConnectionQualityLevel();
       if (newQualityLevel !== this.qualityLevel) {
@@ -173,19 +180,24 @@ class Connection extends events.EventEmitter {
   }
 
   sendOffer() {
+    //必须等成功收集之后，才会发送offer
     if (!this.alreadyGathered && !this.trickleIce) {
+      console.log(" sendOffer fail , alreadyGathered false ");
       return;
     }
     this.createOffer().then((info) => {
-      log.debug(`message: sendOffer sending event, type: ${info.type}, sessionVersion: ${this.sessionVersion}`);
+      log.info(`message: sendOffer sending event, type: ${info.type}, sessionVersion: ${this.sessionVersion}`);
       this._onStatusEvent(info, CONN_SDP);
     });
   }
 
   sendAnswer(evt = CONN_SDP_PROCESSED, forceOffer = false) {
     if (!this.alreadyGathered && !this.trickleIce) {
+      console.log(" sendAnswer fail , alreadyGathered false ");
       return;
     }
+    console.log(" sendAnswer start ");
+
     const promise =
       this.options.createOffer || forceOffer ? this.createOffer() : this.createAnswer();
     promise.then((info) => {
@@ -195,6 +207,8 @@ class Connection extends events.EventEmitter {
   }
 
   _resendLastAnswer(evt, streamId, label, forceOffer = false, removeStream = false) {
+    console.log("_resendLastAnswer");
+
     if (!this.wrtc || !this.wrtc.localDescription) {
       log.debug('message: _resendLastAnswer, this.wrtc or this.wrtc.localDescription are not present');
       return Promise.reject('fail');
@@ -244,41 +258,50 @@ class Connection extends events.EventEmitter {
     this.sessionVersion = 0;
 
     this.wrtc.init((newStatus, mess) => {
-      log.info('message: WebRtcConnection status update, ' +
+      log.info('==【this.wrtc.init】message: WebRtcConnection status update, ' +
         `id: ${this.id}, status: ${newStatus}`,
         logger.objectToLog(this.metadata));
       switch (newStatus) {
         case CONN_INITIAL:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_INITIAL');
           this._startResolveFunction();
           break;
 
         case CONN_SDP_PROCESSED:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_SDP_PROCESSED');
+          break;
         case CONN_SDP:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_SDP');
           break;
 
         case CONN_GATHERED:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_GATHERED,set alreadyGathered  true');
           this.alreadyGathered = true;
           this._gatheredResolveFunction();
           break;
 
         case CONN_CANDIDATE:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_CANDIDATE');
           // eslint-disable-next-line no-param-reassign
           mess = mess.replace(this.options.privateRegexp, this.options.publicIP);
           this._onStatusEvent({ type: 'candidate', candidate: mess }, newStatus);
           break;
 
         case CONN_FAILED:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_FAILED');
           log.warn(`message: failed the ICE process, code: ${WARN_BAD_CONNECTION},` +
             `id: ${this.id}`);
           this._onStatusEvent({ type: 'failed', sdp: mess }, newStatus);
           break;
 
         case CONN_READY:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status CONN_READY');
           log.debug(`message: connection ready, id: ${this.id} status: ${newStatus}`);
           this._readyResolveFunction();
           this._onStatusEvent({ type: 'ready' }, newStatus);
           break;
         default:
+          log.info('==【this.wrtc.init】message: WebRtcConnection status default');
           log.error(`message: unknown webrtc status ${newStatus}`);
       }
     });
@@ -321,11 +344,14 @@ class Connection extends events.EventEmitter {
   }
 
   setRemoteDescription(sdp) {
+    console.log("=======setRemoteDescription=========");
     this.remoteDescription = new SessionDescription(sdp, this.mediaConfiguration);
     return this.wrtc.setRemoteDescription(this.remoteDescription.connectionDescription);
   }
 
   processOffer(sdp) {
+    console.log("=======processOffer=========");
+
     const sdpInfo = SemanticSdp.SDPInfo.processString(sdp);
     return this.setRemoteDescription(sdpInfo);
   }
@@ -341,17 +367,23 @@ class Connection extends events.EventEmitter {
 
   onSignalingMessage(msg) {
     if (msg.type === 'offer') {
+      console.log(" onSignalingMessage msg : offer");
       let onEvent;
       if (this.trickleIce) {
         onEvent = this.onInitialized;
+        console.log(" onSignalingMessage  trickleIce");
+
       } else {
         onEvent = this.onGathered;
       }
+      console.log("[onSignalingMessage]=== processOffer =",msg.sdp);
       return this.processOffer(msg.sdp)
           .then(() => onEvent)
           .then(() => {
+            console.log("=== this.sendAnswer();=====");
             this.sendAnswer();
           }).catch(() => {
+            console.log("====processOffer exception ");
             log.error('message: Error processing offer/answer in connection, connectionId:', this.id);
           });
     } else if (msg.type === 'offer-noanswer') {

@@ -82,6 +82,7 @@ describe('Erizo Controller / Client', () => {
   });
 
   describe('onPublish', () => {
+    console.log("=====onPublish=======");
     const kArbitraryLabel = 'label1';
     let callback;
     let options;
@@ -108,6 +109,8 @@ describe('Erizo Controller / Client', () => {
       expect(callback.args[0][1]).to.equal('Unauthorized');
     });
     describe('p2p', () => {
+      console.log("=====p2p=======");
+
       beforeEach(() => {
         roomMock.p2p = true;
       });
@@ -147,6 +150,8 @@ describe('Erizo Controller / Client', () => {
       });
     });
     describe('erizo', () => {
+      console.log("=====erizo=======");
+
       beforeEach(() => {
         options = {
           state: 'erizo',

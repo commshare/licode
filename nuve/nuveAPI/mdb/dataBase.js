@@ -43,6 +43,6 @@ exports.db = mongojs(databaseUrl, collections);
 exports.superService = config.nuve.superserviceID;
 
 // Superservice key
-exports.nuveKey = config.nuve.superserviceKey;
+exports.nuveKey = config.nuve.superserviceKey;//生成token的key
 
 exports.testErizoController = config.nuve.testErizoController;

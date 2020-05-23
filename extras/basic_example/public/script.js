@@ -85,12 +85,16 @@ const startBasicExample = () => {
   if (screen) {
     config.extensionId = 'okeephmleflklcdebijnponpabbmmgeo';
   }
+  console.log('创建本地流:'+config);
+
+  //创建本地流
   localStream = Erizo.Stream(config);
   const createToken = (roomData, callback) => {
     const req = new XMLHttpRequest();
     const url = `${serverUrl}createToken/`;
 
     req.onreadystatechange = () => {
+      console.log(" onreadystatechange  eq.readyState ");
       if (req.readyState === 4) {
         callback(req.responseText);
       }
@@ -109,10 +113,13 @@ const startBasicExample = () => {
 
   createToken(roomData, (response) => {
     const token = response;
-    console.log(token);
+    console.log('[bs]createToken callback 使用token创建房间 :'+token);
+    //使用token创建房间
     room = Erizo.Room({ token });
 
     const subscribeToStreams = (streams) => {
+      console.log('[ 订阅流:'+streams);
+
       if (autoSubscribe) {
         return;
       }
@@ -137,11 +144,13 @@ const startBasicExample = () => {
       if (enableSimulcast) options.simulcast = { numSpatialLayers: 2 };
 
       if (!onlySubscribe) {
+        console.log("发布本地流 ",options);
         room.publish(localStream, options);
       }
       room.addEventListener('quality-level', (qualityEvt) => {
         console.log(`New Quality Event, connection quality: ${qualityEvt.message}`);
       });
+      //自动订阅
       if (autoSubscribe) {
         room.autoSubscribe({ '/attributes/type': 'publisher' }, {}, { audio: true, video: true, data: false }, () => {});
       }
@@ -164,11 +173,14 @@ const startBasicExample = () => {
       if (localStream) {
         localStream.setAttributes({ type: 'publisher' });
       }
+      console.log("stream-add==> 订阅这个流");
       subscribeToStreams(streams);
       document.getElementById('recordButton').disabled = false;
     });
 
     room.addEventListener('stream-removed', (streamEvent) => {
+      console.log('stream-removed');
+
       // Remove stream from DOM
       const stream = streamEvent.stream;
       if (stream.elementID !== undefined) {
@@ -190,9 +202,12 @@ const startBasicExample = () => {
       document.getElementById('videoContainer').appendChild(div);
 
       localStream.addEventListener('access-accepted', () => {
+        console.log('access-accepted');
+        console.log('连接room');
         room.connect({ singlePC });
         localStream.show('myVideo');
       });
+      console.log("本地流初始化");
       localStream.init();
     }
   });

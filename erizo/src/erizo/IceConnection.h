@@ -50,7 +50,7 @@ class IceConfig {
     std::string turn_server, turn_username, turn_pass;
     std::string stun_server, network_interface;
     uint16_t stun_port, turn_port, min_port, max_port;
-    bool should_trickle;
+    bool should_trickle; //代表啥，转发流么?
     bool use_nicer;
     IceConfig()
       : media_type{MediaType::OTHER},

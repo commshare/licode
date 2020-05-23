@@ -80,7 +80,7 @@ app.delete('/rooms/:room/users/:user', userResource.deleteUser);
 app.use((req, res) => {
   res.status(404).send('Resource not found');
 });
-
+//nuve listen 3000
 const nuvePort = config.nuve.port || 3000;
 
 app.listen(nuvePort);

@@ -19,6 +19,7 @@ class Client extends events.EventEmitter {
     this.id = uuidv4();
     this.options = options;
     this.socketEventListeners = new Map();
+    //客户端监听
     this.listenToSocketEvents();
     this.user = { name: token.userName, role: token.role, permissions: {} };
     const permissions = global.config.erizoController.roles[token.role] || {};
@@ -29,7 +30,8 @@ class Client extends events.EventEmitter {
   }
 
   listenToSocketEvents() {
-    log.debug(`message: Adding listeners to socket events, client.id: ${this.id}`);
+    log.warn(`'message: Adding listeners to socket events, client.id: ${this.id}`);
+    //下面的这种是socket事件，跟channel不同？todo
     this.socketEventListeners.set('sendDataStream', this.onSendDataStream.bind(this));
     this.socketEventListeners.set('connectionMessage', this.onConnectionMessage.bind(this));
     this.socketEventListeners.set('streamMessage', this.onStreamMessage.bind(this));
@@ -44,6 +46,7 @@ class Client extends events.EventEmitter {
     this.socketEventListeners.set('autoSubscribe', this.onAutoSubscribe.bind(this));
     this.socketEventListeners.set('getStreamStats', this.onGetStreamStats.bind(this));
     this.socketEventListeners.forEach((value, key) => {
+      log.info('channel.socketOn @@@@key ',key,' with value ',value);
       this.channel.socketOn(key, value);
     });
     this.channel.on('disconnect', this.onDisconnect.bind(this));
@@ -138,6 +141,7 @@ class Client extends events.EventEmitter {
     });
 
     this.room.controller.addMultipleSubscribers(this.id, streamIds, options, (signMess) => {
+      log.info('message: addMultipleSubscribers, ');
       // We can receive multiple initializing messages with subsets of streamIds. Each subset
       // is sent from a single ErizoJS.
       if (signMess.type === 'multiple-initializing') {
@@ -284,6 +288,7 @@ class Client extends events.EventEmitter {
   }
 
   onSendDataStream(message) {
+    log.info('@@@@onSendDataStream@@@@ ',message);
     const stream = this.room.streamManager.getPublishedStreamById(message.id);
     if (stream === undefined) {
       log.warn('message: Trying to send Data from a non-initialized stream, ' +
@@ -322,6 +327,11 @@ class Client extends events.EventEmitter {
   }
 
   onConnectionMessage(message) {
+    log.info('=====1==[ec] client.js onConnectionMessage ',message);
+    log.info('=====1.1==[ec] client.js onConnectionMessage message.connectionId',message.connectionId);
+       log.info('====2===[ec] client.js onConnectionMessage '+`${message.msg.type}`);
+    log.info('====3===[ec] client.js onConnectionMessage '+`${this.room}`);
+
     if (this.room === undefined) {
       log.error('message: connectionMessage for user in undefined room' +
         `, connectionId: ${message.connectionId}, user: ${this.user}`);
@@ -333,10 +343,14 @@ class Client extends events.EventEmitter {
         `, connectionId: ${message.connectionId}, user: ${this.user}`);
       return;
     }
+    //实际在这个callback里处理processConnectionMessageFromClient收到的内容？
     const callback = (result) => {
       let type = message && message.msg && message.msg.type;
       type = type || 'unknown';
+      log.info('【callback】===type:',type);
       if (result.error && type === 'offer') {
+        log.info('=[callback]]==1===[ec] client.js err onConnectionMessage ',message);
+        log.info('=[callback]==2===[ec] client.js err offer: connection_message_erizo');
         this.sendMessage('connection_message_erizo', {
           connectionId: message.connectionId,
           info: 'error',
@@ -344,11 +358,15 @@ class Client extends events.EventEmitter {
         });
       }
     };
+    //android没填这个连接id么？
+    console.log("%%%%%%%%call processConnectionMessageFromClient  message.connectionId ", message.connectionId);
     this.room.controller.processConnectionMessageFromClient(message.erizoId, this.id,
       message.connectionId, message.msg, callback.bind(this));
   }
 
   onStreamMessage(message) {
+    log.info('------onStreamMessage----'+ `${message.msg.type }`);
+    console.log("-----onStreamMessage---",message.msg.type );
     if (this.room === undefined) {
       log.error('message: streamMessage for user in undefined room' +
         `, streamId: ${message.streamId}, user: ${this.user}`);
@@ -393,6 +411,7 @@ class Client extends events.EventEmitter {
   }
 
   _publishExternalInput(id, options, sdp, callback) {
+    log.w('_publishExternalInput');
     let url = sdp;
     if (options.state === 'recording') {
       const recordingId = sdp;
@@ -411,6 +430,7 @@ class Client extends events.EventEmitter {
       attributes: options.attributes });
     this.room.streamManager.addPublishedStream(id, st);
     this.room.controller.addExternalInput(this.id, id, url, options.label, (result) => {
+      log.info('=======_addExternalInput===');
       if (result === 'success') {
         st.updateStreamState(StreamStates.PUBLISHER_READY);
         callback(id);
@@ -422,13 +442,18 @@ class Client extends events.EventEmitter {
     });
   }
 
+  //收到erizo 的publish
   _publishErizo(id, options, sdp, callback) {
+    log.info('=======_publishErizo sdp :'+ `${sdp}`);//这个是null
     options.mediaConfiguration = this.token.mediaConfiguration;
     options.singlePC = this.options.singlePC || false;
-    log.info('message: addPublisher requested, ' +
+    //message: addPublisher requested, streamId: 691195757132862300, clientId: b1085c42-d463-43a3-b77d-95fe025df0bf
+    // state: erizo, data: false, audio: true, video: true, minVideoBW: 0, mediaConfiguration: default, singlePC: false
+    log.info('======message: addPublisher requested, ' +
       `streamId: ${id}, clientId: ${this.id}`,
-      logger.objectToLog(options),
-      logger.objectToLog(options.attributes));
+      `options:  `+logger.objectToLog(options), //打印options
+        `attribute:  `+ logger.objectToLog(options.attributes)); //这个打印出来了 么？
+    //创建发布流
     const st = new PublishedStream({ id,
       client: this.id,
       audio: options.audio,
@@ -437,10 +462,14 @@ class Client extends events.EventEmitter {
       label: options.label,
       screen: options.screen,
       attributes: options.attributes });
+    //流管理添加发布者
     this.room.streamManager.addPublishedStream(id, st);
     this.room.controller.addPublisher(this.id, id, options, (signMess) => {
+      log.info("===this.room.controller.addPublisher===");
       if (signMess.type === 'initializing') {
+        log.info("------signMess.type === 'initializing'---callback");
         callback(id, signMess.erizoId, signMess.connectionId);
+        //更新流状态为 PULISHER_INITAL
         st.updateStreamState(StreamStates.PUBLISHER_INITAL);
         log.info('message: addPublisher, ' +
           `label: ${options.label}, ` +
@@ -461,8 +490,11 @@ class Client extends events.EventEmitter {
         }
         return;
       } else if (signMess.type === 'started') {
+        log.info("------signMess.type === 'started'");
+
         return;
       } else if (signMess.type === 'failed') {
+        log.info("------signMess.type === 'failed'");
         log.warn('message: addPublisher ICE Failed, ' +
           'state: PUBLISHER_FAILED, ' +
           `streamId: ${id}, ` +
@@ -472,6 +504,7 @@ class Client extends events.EventEmitter {
         // We're going to let the client disconnect
         return;
       } else if (signMess.type === 'ready') {
+        log.info("------signMess.type === 'ready' PUBLISHER_READY");
         st.updateStreamState(StreamStates.PUBLISHER_READY);
         this.room.forEachClient((client) => {
           client.onInternalAutoSubscriptionChange();
@@ -528,6 +561,7 @@ class Client extends events.EventEmitter {
   }
 
   onPublish(options, sdp, callback) {
+    log.info("------[onPublish]onPublish sdp ",sdp);
     if (!this.hasPermission(Permission.PUBLISH, options)) {
       callback(null, 'Unauthorized');
       return;
@@ -545,6 +579,7 @@ class Client extends events.EventEmitter {
   }
 
   onSubscribe(options, sdp, callback) {
+    log.info("onSubscribe sdp ",sdp);
     if (!this.hasPermission(Permission.SUBSCRIBE, options)) {
       callback(null, 'Unauthorized');
       return;
@@ -589,6 +624,8 @@ class Client extends events.EventEmitter {
         options.singlePC = this.options.singlePC || false;
         stream.addAvSubscriber(this.id);
         this.room.controller.addSubscriber(this.id, options.streamId, options, (signMess) => {
+          log.info('=======oom.controller.addSubscriber===');
+
           if (signMess.type === 'initializing') {
             log.info('message: addSubscriber, ' +
                              'state: SUBSCRIBER_INITIAL, ' +
@@ -647,6 +684,7 @@ class Client extends events.EventEmitter {
   }
 
   onStartRecorder(options, callback) {
+    log.info('onStartRecorder');
     if (!this.hasPermission(Permission.RECORD)) {
       callback(null, 'Unauthorized');
       return;

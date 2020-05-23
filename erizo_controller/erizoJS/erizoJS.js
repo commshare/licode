@@ -97,7 +97,7 @@ const controller = require('./erizoJSController');
 
 // Logger
 const log = logger.getLogger('ErizoJS');
-
+//这个需要从外部传入的？
 const rpcID = process.argv[2];
 
 process.on('unhandledRejection', (error) => {
@@ -110,18 +110,20 @@ threadPool.start();
 
 const ioThreadPool = new addon.IOThreadPool(global.config.erizo.numIOWorkers);
 
-if (global.config.erizo.useNicer) {
+if (global.config.erizo.useNicer) {//默认是true
   log.info('Starting ioThreadPool');
   ioThreadPool.start();
 }
-
+//ejs创建ec？
 const ejsController = controller.ErizoJSController(rpcID, threadPool, ioThreadPool);
 
+//心跳？
 ejsController.keepAlive = (callback) => {
   callback('callback', true);
 };
 
 ejsController.privateRegexp = new RegExp(process.argv[3], 'g');
+//外部可以指定一个公网ip
 ejsController.publicIP = process.argv[4];
 
 amqper.connect(() => {

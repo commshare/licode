@@ -1,0 +1,38 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/zhangbin/tet/licodelllcode/licode
+==boost===    
+CMake Warning at /usr/local/lib/cmake/boost_regex-1.71.0/libboost_regex-variant-shared.cmake:59 (message):
+  Target Boost::regex already has an imported location
+  '/usr/local/lib/libboost_regex-mt.dylib', which will be overwritten with
+  '/usr/local/lib/libboost_regex.dylib'
+Call Stack (most recent call first):
+  /usr/local/lib/cmake/boost_regex-1.71.0/boost_regex-config.cmake:43 (include)
+  /usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake:117 (find_package)
+  /usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake:182 (boost_find_component)
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindBoost.cmake:443 (find_package)
+  CMakeLists.txt:36 (find_package)
+
+
+CMake Warning at /usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-shared.cmake:59 (message):
+  Target Boost::system already has an imported location
+  '/usr/local/lib/libboost_system-mt.dylib', which will be overwritten with
+  '/usr/local/lib/libboost_system.dylib'
+Call Stack (most recent call first):
+  /usr/local/lib/cmake/boost_system-1.71.0/boost_system-config.cmake:43 (include)
+  /usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake:117 (find_package)
+  /usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake:182 (boost_find_component)
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindBoost.cmake:443 (find_package)
+  CMakeLists.txt:36 (find_package)
+
+
+-- ----------find boost 1.71.0-----------
+--  Boost_LIBRARIES ===Boost::thread;Boost::regex;Boost::system
+-- ===/Users/zhangbin/tet/licodelllcode/licode/erizo
+-- ---------------------
+-- ===/Users/zhangbin/tet/licodelllcode/licode
+-- ===/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/ByteBuffer.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/Logger.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/LoggerListeners.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/CriticalSection.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/Errors.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/Event.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/File.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/GZipFile.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/IsThread.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/OSSupport/StackTrace.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/StringUtils.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/ThreadPool.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/common.cpp;/Users/zhangbin/tet/licodelllcode/licode/zhangbin/common/stdafx.cpp
+-- ---------------------
+Generating DEBUG project
+==OPENSSL==2=  /Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libssl.a /Users/zhangbin/tet/licodelllcode/licode/erizo/openssl-1.0.1u-OSX/lib/libcrypto.a 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/zhangbin/tet/licodelllcode/licode/cmake-build-debug

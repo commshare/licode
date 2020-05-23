@@ -11,10 +11,12 @@ class StreamManager {
   }
 
   addPublishedStream(streamId, publishedStream) {
+    console.log('[sm]addPublishedStream to map'+streamId);
     this.publishedStreams.set(streamId, publishedStream);
   }
 
   removePublishedStream(id) {
+    console.log('[sm]removePublishedStream from map'+id);
     return this.publishedStreams.delete(id);
   }
 

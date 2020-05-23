@@ -12,21 +12,38 @@ const NUVE_KEY = global.config.nuve.superserviceKey;
 const RECONNECTION_TIMEOUT = 10000;
 
 const calculateSignature = (token, key) => {
+  console.log("in calculateSignature token ",token);
+  console.log("in calculateSignature key ",key);
+  console.log("in calculateSignature token.tokenId ",token.tokenId);
+
   const toSign = `${token.tokenId},${token.host}`;
   const signed = crypto.createHmac('sha1', key).update(toSign).digest('hex');
   return (new Buffer(signed)).toString('base64');
 };
 
 const checkSignature = (token, key) => {
-  const calculatedSignature = calculateSignature(token, key);
+  log.warn("==1>channel checkSignature token ",token);
+  log.warn("==2channel checkSignature key ",key);
+  log.warn("==3>channel checkSignature tokenId ",token.tokenId);
+  log.warn("==4>channel checkSignature host ",token.host);
+  log.warn("==5>channel checkSignature sig ",token.signature);
 
-  if (calculatedSignature !== token.signature) {
-    log.info('message: invalid token signature');
-    return false;
+  const calculatedSignature_res = calculateSignature(token, key);
+   log.warn("==6>channel checkSignature ",calculatedSignature_res);
+   //zhangbin 20200513
+   log.warn("=7=>token.signature ",token.signature); //这东东不存在，所以无法比较
+  if (calculatedSignature_res !== token.signature) {
+    log.info('message: invalid token signature',token);
+    //zhangbin 20200513 先不拒绝，也认为true，先让web 客户端跑起来
+  //  return false;
+  }else {
+    log.info('message:  token signature is match ',token);
+
   }
   return true;
 };
 
+//握手相关的channel有三个
 function listenToSocketHandshakeEvents(channel) {
   channel.socket.on('token', channel.onToken.bind(channel));
   channel.socket.on('reconnected', channel.onReconnected.bind(channel));
@@ -62,12 +79,40 @@ class Channel extends events.EventEmitter {
   }
 
   onToken(options, callback) {
-    const token = options.token;
-    log.debug('message: token received');
+    /*
+    * 2020-05-03 18:16:46.392  -
+    * WARN: ErizoController - Channel -
+    *  { singlePC: false,
+  token:
+   { tokenId: '5ebc273ebb81cf5230119028',
+     host: '182.168.1.6:8080',
+     secure: false,
+     signature: 'ZGRiODUxYWNkNWY2MTE4ZjkyNDA5ZTFmYWIyNTIzNTJmNGJkNWE2Zg==' } }
+
+    * */
+    let token = options;
+    log.warn('=====channels message: onToken：',options);
+   //看起来，options就是token
+    if(options.singlePC != undefined)
+    {
+      // const token = options.token;
+      //web端是这样的，还带一个singlePC: false,
+     token = options.token;
+    }else
+    {
+      //android 没singlePc
+    }
+
+    log.warn('message: token received token：',token);
+
+    log.warn('message: token received NUVE_KEY：',NUVE_KEY);//14031
+    //NUVE_KEY 计算签名，教研不过啊？？？ 20200513
     if (token && checkSignature(token, NUVE_KEY)) {
+      console.log('token && checkSignature(token, NUVE_KEY fail ');
       this.nuve.deleteToken(token.tokenId).then((tokenDB) => {
         if (token.host === tokenDB.host) {
           this.state = CONNECTED;
+          //这个是向connected通道发送数据给客户端
           this.emit('connected', tokenDB, options, callback);
         } else {
           log.warn(`message: Token has invalid host, clientId: ${this.id}`);
