@@ -1,3 +1,5 @@
+# prev8.4分支
+> 可以在mac catilina 10.15.1 上编译 运行
 # Licode
 
 ##
